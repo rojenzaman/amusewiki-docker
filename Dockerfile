@@ -1,5 +1,5 @@
 FROM nginx:latest
-RUN apt-get update && apt-get upgrade
+RUN apt-get update && apt-get upgrade -y
 # Install all dependencies
 # Note: fontconfig must be installed before texlive-full
 RUN apt-get install -y fontconfig
