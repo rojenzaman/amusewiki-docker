@@ -1,0 +1,16 @@
+# available OCI:
+#	docker
+#	podman
+OCI="docker"
+
+# available tags:
+#       debian                  2.53 GB
+#       debian-texlive          918.36 MB
+#       centos                  1.94 GB
+#       rockylinux              1.81 GB
+#       fedora                  3.04 GB
+TAG="debian-texlive"
+
+# debug:
+#function docker() { echo "docker $@"; }
+#function podman() { echo "podman $@"; }
