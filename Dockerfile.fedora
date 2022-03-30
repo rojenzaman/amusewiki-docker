@@ -1,0 +1,61 @@
+FROM fedora:latest
+
+# install requirements
+RUN dnf update -y
+RUN dnf install -y \
+	git nginx sqlite cgit perl-App-cpanminus fontconfig GraphicsMagick ImageMagick shared-mime-info openssl-devel xapian-core-devel unzip wget libxml2-devel expat-devel policycoreutils setroubleshoot rsync ghostscript \
+	perl-Moose perl-Carton zlib-devel libpng-devel libjpeg-devel \
+	texlive-scheme-full
+RUN dnf groupinstall -y 'Development Tools'
+
+# quality of life
+RUN dnf install -y bash-completion nano sudo
+RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc
+RUN echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc
+RUN echo "source /etc/profile.d/bash_completion.sh" >> ${HOME}/.bashrc
+RUN dnf clean all
+
+# amusewiki nginx compatible
+RUN mkdir -p /etc/nginx/sites-enabled
+RUN echo -e "\
+include /etc/nginx/sites-enabled/*; \n\
+client_max_body_size 8m; \
+" > /etc/nginx/conf.d/post-amuse.conf
+
+# create amuse user
+RUN adduser -d /var/www/amusewiki amusewiki
+RUN usermod -aG wheel amusewiki
+RUN echo '%wheel ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# Switch to amusewiki user and install
+USER amusewiki
+WORKDIR /var/www/amusewiki
+RUN git clone https://github.com/melmothx/amusewiki.git
+WORKDIR /var/www/amusewiki/amusewiki
+RUN ./script/install.sh || true
+RUN cp dbic.yaml.sqlite.example dbic.yaml
+
+#TODO: make hostname configurable
+RUN ./script/configure.sh amusewiki.docker > details.txt
+
+# install nginx configuration
+USER root
+RUN cat /tmp/nginx-amusewiki-*/amusewiki_include > /etc/nginx/amusewiki_include
+RUN cat /tmp/nginx-amusewiki-*/amusewiki > /etc/nginx/sites-enabled/amusewiki
+ENTRYPOINT ["sudo", "nginx", "-g", "daemon off;"]
+
+USER amusewiki
+# quality of life
+RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'" >> ${HOME}/.bashrc
+RUN echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc
+RUN echo "source /etc/profile.d/bash_completion.sh" >> ${HOME}/.bashrc
+
+ENV PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'
+RUN source /etc/profile.d/bash_completion.sh
+ENV AMW_WORKERS=5
+
+# open the home so plackup is accessible to nginx
+RUN chmod 755 /var/www/amusewiki  
+
+# Right now you need to execute these commands in the container once it runs
+#./init-all.sh start
