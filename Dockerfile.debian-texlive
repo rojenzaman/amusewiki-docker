@@ -1,5 +1,7 @@
 FROM nginx:latest
-SHELL ["/bin/bash", "-c"]
+#SHELL ["/bin/bash", "-c"]
+# temporarily disable posix shell:
+RUN mv /bin/sh /bin/sh.local && ln -s /bin/bash /bin/sh
 
 # install requirements
 RUN apt-get update && apt-get upgrade -y
@@ -64,3 +66,6 @@ RUN chmod 755 /var/www/amusewiki
 
 # Right now you need to execute these commands in the container once it runs
 #./init-all.sh start
+
+# restore posix shell
+RUN unlink /bin/sh && mv /bin/sh.local /bin/sh
