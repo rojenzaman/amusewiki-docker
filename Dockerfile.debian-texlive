@@ -68,4 +68,4 @@ RUN chmod 755 /var/www/amusewiki
 #./init-all.sh start
 
 # restore posix shell
-RUN unlink /bin/sh && mv /bin/sh.local /bin/sh
+RUN sudo unlink /bin/sh && mv /bin/sh.local /bin/sh
