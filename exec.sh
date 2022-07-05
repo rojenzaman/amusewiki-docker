@@ -1,6 +1,6 @@
 #!/bin/bash
 # replace tag and OCI in ENV if you want
-. ENV &>/dev/null
+. config.conf &>/dev/null
 
 if [[ ! "$(${OCI} ps -a | grep "amusewiki_${TAG}")" ]]; then
 	${OCI} run -d --network host --name amusewiki_${TAG} rojen/amusewiki:${TAG}

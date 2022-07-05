@@ -1,6 +1,6 @@
 #!/bin/bash
 # replace OCI in ENV
-. ENV &>/dev/null
+. config.conf &>/dev/null
 
 case "${1}" in
 	Dockerfile.debian|debian) ${OCI} build -t rojen/amusewiki:debian -f Dockerfile.debian . ;;
