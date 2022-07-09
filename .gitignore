@@ -1,2 +1,5 @@
 *.log
-log/
+packages.amusewiki.org/.lib/amusewiki.tar
+packages.amusewiki.org/db
+packages.amusewiki.org/repo
+packages.amusewiki.org/thumbnails
