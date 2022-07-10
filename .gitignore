@@ -1,4 +1,4 @@
-*.log
+testing/*.log
 */.lib/amusewiki.tar
 */db
 */repo
