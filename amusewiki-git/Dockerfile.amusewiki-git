@@ -1,0 +1,90 @@
+FROM debian:latest
+#SHELL ["/bin/bash", "-c"]
+# temporarily disable posix shell:
+RUN mv /bin/sh /bin/sh.local && ln -s /bin/bash /bin/sh
+
+# install requirements
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y \
+	wget curl gnupg2 build-essential bash-completion nano file net-tools psmisc procps htop \
+	python3 sudo sqlite3
+
+RUN apt-get install --no-install-recommends --no-install-suggests -y \
+	carton cpanminus fontconfig gcc ghostscript git graphicsmagick imagemagick make rsync \
+	shared-mime-info unzip xapian-tools nginx texlive-base texlive-fonts-recommended texlive-fonts-recommended-doc \
+	texlive-base texlive-lang-all texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive-latex-recommended \
+	texlive-luatex texlive-xetex cgit fcgiwrap fonts-cmu fonts-dejavu fonts-hosny-amiri fonts-linuxlibertine fonts-lmodern \
+	fonts-sil-charis fonts-sil-gentium fonts-sil-gentium-basic fonts-sil-scheherazade fonts-texgyre lmodern g++ libssl-dev \
+	libxapian-dev libxml2-dev libexpat1-dev libjpeg-dev libpng-dev gettext
+
+# install fake systemd
+RUN git clone https://github.com/gdraheim/docker-systemctl-replacement /tmp/docker-systemctl-replacement
+WORKDIR /tmp/docker-systemctl-replacement
+RUN make
+RUN cp files/docker/systemctl3.py /usr/bin/systemctl
+COPY .lib/bash_completion/systemctl /etc/bash_completion.d
+RUN ln -sf /usr/bin/systemctl /bin/systemctl || true
+
+# install amusewiki font
+RUN wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -
+RUN echo 'deb http://packages.amusewiki.org/debian bullseye main' > /etc/apt/sources.list.d/amusewiki.list
+RUN apt-get update
+RUN apt-get install -y amusewiki-extra-fonts
+
+# amusewiki nginx compatible
+RUN rm -f /etc/nginx/sites-enabled/* /etc/nginx/sites-available/* /etc/nginx/conf.d/*
+RUN mkdir -p /etc/nginx/sites-enabled
+RUN echo -e "\
+include /etc/nginx/sites-enabled/*; \n\
+client_max_body_size 8m; \
+" > /etc/nginx/conf.d/post-amuse.conf
+
+# create amusewiki user
+RUN adduser --home /var/lib/amusewiki amusewiki --disabled-password --gecos ""
+RUN usermod -aG sudo amusewiki
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# quality of life
+RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc
+RUN echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc
+RUN echo "source /etc/bash_completion" >> ${HOME}/.bashrc
+RUN apt-get clean
+
+# Switch to amusewiki user and install
+RUN mv /var/lib/amusewiki /tmp; \
+	git clone https://github.com/melmothx/amusewiki.git /var/lib/amusewiki; \
+	cp -rp /tmp/amusewiki /var/lib/amusewiki && rm -rf /tmp/amusewiki; \ 
+	chown -R amusewiki:amusewiki /var/lib/amusewiki
+USER amusewiki
+WORKDIR /var/lib/amusewiki
+RUN ./script/install.sh || true
+RUN cp dbic.yaml.sqlite.example dbic.yaml
+
+#TODO: make hostname configurable
+RUN carton exec script/configure.sh amusewiki.docker > details.txt
+RUN carton exec script/amusewiki-generate-nginx-conf | sudo /bin/sh
+
+# set systemd files
+RUN carton exec script/generate-systemd-unit-files ./var/tmp/systemd
+RUN sudo cp -v ./var/tmp/systemd/* /etc/systemd/system/
+RUN sudo chown root:root /etc/systemd/system/amusewiki-*
+RUN sudo chmod 664 /etc/systemd/system/amusewiki-*
+
+# set ENTRYPOINT
+RUN sudo systemctl enable amusewiki-web amusewiki-jobber nginx 
+RUN sudo mv /var/lib/amusewiki/script/amusewiki-jobber /var/lib/amusewiki/script/amusewiki-jobber-exec
+COPY .lib/amusewiki-jobber /var/lib/amusewiki/script
+COPY .lib/amusewiki-jobber.service /etc/systemd/system
+CMD ["/usr/bin/systemctl"]
+
+# quality of life
+RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'" >> /var/lib/amusewiki/.bashrc
+RUN echo "alias ls='ls --color=auto'" >> /var/lib/amusewiki/.bashrc
+RUN echo "source /etc/bash_completion" >> /var/lib/amusewiki/.bashrc
+
+ENV PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'
+RUN source /etc/bash_completion
+ENV AMW_WORKERS=5
+
+# restore posix shell
+RUN sudo -S unlink /bin/sh && sudo -S mv /bin/sh.local /bin/sh

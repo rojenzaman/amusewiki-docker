@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo nginx -s stop &>/dev/null
+sudo nginx &>/dev/null
+sudo chown -R amusewiki:amusewiki /var/lib/amusewiki &>/dev/null
+
+amusewiki-jobber-exec "$@"

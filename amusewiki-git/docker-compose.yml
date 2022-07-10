@@ -1,0 +1,14 @@
+version: '3.4'
+services:
+  app:
+    network_mode: host
+    build:
+      context: .
+      dockerfile: Dockerfile.amusewiki-git
+      #args:
+        #NOARG: 0
+    volumes:
+      - './repo:/var/lib/amusewiki/repo'
+      - './thumbnails:/var/lib/amusewiki/thumbnails'
+      - './db/sqlite.db:/var/lib/amusewiki/sqlite.db'
+      - './db/dbic.yaml:/var/lib/amusewiki/dbic.yaml'
