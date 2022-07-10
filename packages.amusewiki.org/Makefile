@@ -7,6 +7,7 @@ default: help
 clean:
 	rm -rf repo db thumbnails
 	mkdir repo db thumbnails
+	touch repo/.gitkeep db/.gitkeep thumbnails/.gitkeep
 
 build:
 	$(OCI) build -t rojen/amusewiki:$(TAG) -f Dockerfile.$(TAG) .
@@ -22,7 +23,7 @@ restore:
 	tar -xvf .lib/amusewiki.tar
 
 shell:
-	docker-compose exec app bash
+	$(OCI)-compose exec app bash
 
 setup-example-stack:
 	make clean
