@@ -30,6 +30,7 @@ setup-example-stack:
 	make clean
 	wget -O lib/amusewiki.tar https://ftp.rojenz.de/amusewiki.tar
 	make restore
+	$(POST_SETUP)
 	cat amusewiki/db/details.txt
 
 rootless-podman:
