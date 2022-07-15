@@ -1,3 +1,10 @@
+
+![](https://img.shields.io/docker/image-size/rojen/amusewiki/latest) ![](https://img.shields.io/docker/pulls/rojen/amusewiki) 
+
+<!--
+https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=layers
+-->
+
 ### How to use?
 
 Clone this repo:
