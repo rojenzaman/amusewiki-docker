@@ -10,7 +10,7 @@ clean:
 	touch repo/.gitkeep db/.gitkeep thumbnails/.gitkeep
 
 build:
-	$(OCI) build -t rojen/amusewiki:$(TAG) -f Dockerfile.$(TAG) .
+	$(OCI) build -t rojen/amusewiki:$(TAG) -t rojen/amusewiki:latest -f Dockerfile.$(TAG) .
 
 exec:
 	.lib/exec.sh $(OCI) $(TAG)
