@@ -60,8 +60,6 @@ USER amusewiki
 WORKDIR /var/lib/amusewiki
 RUN ./script/install.sh || true; \
 	cp dbic.yaml.sqlite.example dbic.yaml; \
-	\
-	#TODO: make hostname configurable
 	carton exec script/configure.sh amusewiki.docker > details.txt; \
 	carton exec script/amusewiki-generate-nginx-conf | sudo /bin/sh; \
 	\
