@@ -58,9 +58,10 @@ RUN mv /var/lib/amusewiki /tmp; \
 	chown -R amusewiki:amusewiki /var/lib/amusewiki
 USER amusewiki
 WORKDIR /var/lib/amusewiki
+ARG AMUSE_BUILD_DOMAIN
 RUN ./script/install.sh || true; \
 	cp dbic.yaml.sqlite.example dbic.yaml; \
-	carton exec script/configure.sh amusewiki.docker > details.txt; \
+	carton exec script/configure.sh ${AMUSE_BUILD_DOMAIN} > details.txt; \
 	carton exec script/amusewiki-generate-nginx-conf | sudo /bin/sh; \
 	\
 	# set systemd files

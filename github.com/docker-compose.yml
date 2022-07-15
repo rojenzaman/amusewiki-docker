@@ -5,8 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.git
-      #args:
-        #NOARG: 0
+      args:
+        AMUSE_BUILD_DOMAIN: amusewiki.localdomain
     volumes:
       - './amusewiki/repo:/var/lib/amusewiki/repo'
       - './amusewiki/thumbnails:/var/lib/amusewiki/thumbnails'
