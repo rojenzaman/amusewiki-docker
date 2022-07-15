@@ -22,7 +22,7 @@ RUN git clone https://github.com/gdraheim/docker-systemctl-replacement /tmp/dock
 	make; \
 	cp files/docker/systemctl3.py /usr/bin/systemctl; \
 	ln -sf /usr/bin/systemctl /bin/systemctl || true
-COPY .lib/bash_completion/systemctl /etc/bash_completion.d
+COPY lib/bash_completion/systemctl /etc/bash_completion.d
 
 # install amusewiki font
 RUN wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -; \
@@ -74,8 +74,8 @@ RUN ./script/install.sh || true; \
 # set ENTRYPOINT
 RUN sudo systemctl enable amusewiki-web amusewiki-jobber nginx; \ 
 	sudo mv /var/lib/amusewiki/script/amusewiki-jobber /var/lib/amusewiki/script/amusewiki-jobber-exec
-COPY .lib/amusewiki-jobber /var/lib/amusewiki/script
-COPY .lib/amusewiki-jobber.service /etc/systemd/system
+COPY lib/amusewiki-jobber /var/lib/amusewiki/script
+COPY lib/amusewiki-jobber.service /etc/systemd/system
 CMD ["/usr/bin/systemctl"]
 
 # quality of life

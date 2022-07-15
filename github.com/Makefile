@@ -1,6 +1,6 @@
 OCI = docker
-TAG = package
-BUILD_ARG = -t rojen/amusewiki:latest
+TAG = git
+BUILD_ARG = 
 
 default: help
 .DEFAULT_GOAL := default

@@ -1,5 +1,6 @@
 */*.log
-*/.lib/amusewiki.tar
-*/db
-*/repo
-*/thumbnails
+*/lib/amusewiki.tar
+*/*/db
+*/*/repo
+*/*/thumbnails
+*/*/nginx

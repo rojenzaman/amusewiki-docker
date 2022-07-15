@@ -12,10 +12,10 @@ To use container with official packages, go to `package.amusewiki.org` directory
 cd amusewiki-docker/packages.amusewiki.org
 ```
 
-To use container with amusewiki git source, go to `amusewiki-git` directory:
+To use container with amusewiki git source, go to `github.com` directory:
 
 ```bash
-cd amusewiki-docker/amusewiki-git
+cd amusewiki-docker/github.com
 ```
 
 Create sqlite database and repo files for the amusewiki docker-compose stack (if you have please replace with them):
