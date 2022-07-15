@@ -29,10 +29,9 @@ RUN wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -; 
 ENV DEBIAN_FRONTEND newt
 
 # quality of life
-RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc \
-	echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc; \
-	echo "source /etc/bash_completion" >> ${HOME}/.bashrc; \
-	apt-get clean
+#RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc \
+#	echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc; \
+#	echo "source /etc/bash_completion" >> ${HOME}/.bashrc; \
 
 # amusewiki nginx compatible
 RUN rm -f /etc/nginx/sites-enabled/* /etc/nginx/sites-available/* /etc/nginx/conf.d/*; \
@@ -44,7 +43,10 @@ client_max_body_size 8m; \
 
 # give sudo to amusewiki
 RUN usermod -aG sudo amusewiki; \
-	echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+	#echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+	echo 'ALL ALL=NOPASSWD: /bin/mv,/usr/bin/unlink,/bin/rm' >> /etc/sudoers.d/amusewiki-temp; \
+	echo 'ALL ALL=NOPASSWD: /bin/chown,/usr/sbin/nginx,/usr/sbin/amusewiki,/usr/bin/systemctl,/usr/bin/apt' >> /etc/sudoers.d/amusewiki; \
+	chmod 0440 /etc/sudoers.d/amusewiki-temp /etc/sudoers.d/amusewiki
 
 # install nginx configuration
 RUN cat /tmp/nginx-amusewiki-*/amusewikidebian_include > /etc/nginx/amusewikidebian_include; \
@@ -67,4 +69,5 @@ ENV PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e
 ENV AMW_WORKERS=5
 
 # restore posix shell
-RUN sudo -S unlink /bin/sh && sudo -S mv /bin/sh.local /bin/sh
+RUN sudo -S unlink /bin/sh && sudo -S mv /bin/sh.local /bin/sh; \
+	sudo -S rm -f /etc/sudoers.d/amusewiki-temp
