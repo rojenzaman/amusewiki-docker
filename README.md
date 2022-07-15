@@ -24,8 +24,30 @@ Create sqlite database and repo files for the amusewiki docker-compose stack (if
 make setup-example-stack
 ```
 
-Then build and run:
+Then build/pull and run:
 
 ```bash
+# to build and run
 docker-compose up -d --build
+
+# to pull and run
+cp lib/testing.yml docker-compose.yml
+docker-compose up -d
+```
+
+#### Rootless Podman
+
+If you want to run under rootless podman, please execute the following instead of above:
+
+```bash
+make rootless-podman
+```
+
+```bash
+# to build and run:
+podman-compose up -d --build
+
+# to pull and run:
+cp lib/testing.yml docker-compose.yml
+podman-compose up -d
 ```
