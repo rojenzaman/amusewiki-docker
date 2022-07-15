@@ -2,6 +2,7 @@ version: '3.4'
 services:
   app:
     image: rojen/amusewiki:git
+    network_mode: host
     volumes:
       - './amusewiki/repo:/var/lib/amusewiki/repo'
       - './amusewiki/thumbnails:/var/lib/amusewiki/thumbnails'
