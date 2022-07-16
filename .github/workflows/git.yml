@@ -22,7 +22,7 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
     - name: Build the Docker image
-      run: docker build github.com/ --file github.com/Dockerfile.git --tag rojen/amusewiki:git
+      run: docker build github.com/ --file github.com/Dockerfile --tag rojen/amusewiki:git --build-arg AMUSE_BUILD_DOMAIN=amusewiki.localdomain
 
     - name: Docker Push
-      run: docker push rojen/amusewiki
+      run: docker push rojen/amusewiki:git
