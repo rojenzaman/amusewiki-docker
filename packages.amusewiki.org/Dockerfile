@@ -39,7 +39,9 @@ RUN rm -f /etc/nginx/sites-enabled/* /etc/nginx/sites-available/* /etc/nginx/con
 	echo -e "\
 include /etc/nginx/sites-enabled/*; \n\
 client_max_body_size 8m; \
-" > /etc/nginx/conf.d/post-amuse.conf
+" > /etc/nginx/conf.d/post-amuse.conf; \
+# post nginx settings \
+	sed -i 's/# server_names_hash_bucket_size 64;/server_names_hash_bucket_size 128;/g' /etc/nginx/nginx.conf
 
 # give sudo to amusewiki
 RUN usermod -aG sudo amusewiki; \
