@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: rojen/amusewiki:package
 
 on:
   push:
