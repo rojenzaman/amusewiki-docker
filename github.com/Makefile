@@ -28,14 +28,14 @@ shell:
 
 setup-example-stack:
 	make clean
-	wget -O lib/amusewiki.tar https://ftp.rojenz.de/amusewiki.tar
+	wget -O lib/amusewiki.tar https://github.com/rojenzaman/amusewiki-docker/releases/download/latest/amusewiki.tar
 	make restore
 	$(POST_SETUP)
 	cat amusewiki/db/details.txt
 
 rootless-podman:
 	make clean
-	wget -O lib/amusewiki.tar https://ftp.rojenz.de/amusewiki.tar
+	wget -O lib/amusewiki.tar https://github.com/rojenzaman/amusewiki-docker/releases/download/latest/amusewiki.tar
 	make restore
 	sed -i "s/80/$(PODMAN_HTTP_PORT)/g" amusewiki/nginx/amusewikidebian
 	sed -i "s/443/$(PODMAN_HTTPS_PORT)/g" amusewiki/nginx/amusewikidebian
