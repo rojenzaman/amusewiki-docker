@@ -1,5 +1,5 @@
 
-[![](https://img.shields.io/docker/image-size/rojen/amusewiki/latest)](https://hub.docker.com/r/rojen/amusewiki) [![](https://img.shields.io/docker/pulls/rojen/amusewiki)](https://hub.docker.com/r/rojen/amusewiki)
+[![](https://img.shields.io/docker/image-size/rojen/amusewiki/latest)](https://hub.docker.com/r/rojen/amusewiki) [![Docker Image CI](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/docker-image.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/docker-image.yml) [![](https://img.shields.io/docker/pulls/rojen/amusewiki)](https://hub.docker.com/r/rojen/amusewiki)
 
 <!--
 https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=layers
