@@ -11,7 +11,7 @@ clean:
 	touch amusewiki/repo/.gitkeep amusewiki/db/.gitkeep amusewiki/thumbnails/.gitkeep amusewiki/nginx/.gitkeep
 
 build:
-	$(OCI) build -t rojen/amusewiki:$(TAG) $(BUILD_ARG) -f Dockerfile .
+	$(OCI) build -t rojen/amusewiki:$(TAG) $(BUILD_ARGS) -f Dockerfile .
 
 exec:
 	lib/exec.sh $(OCI) $(TAG)

@@ -54,8 +54,9 @@ RUN adduser --home /var/lib/amusewiki amusewiki --disabled-password --gecos ""; 
 #	echo "source /etc/bash_completion" >> ${HOME}/.bashrc;
 
 # Switch to amusewiki user and install
+ARG AMUSE_CLONE_COMMAND
 RUN mv /var/lib/amusewiki /tmp; \
-	git clone https://github.com/melmothx/amusewiki.git /var/lib/amusewiki; \
+	${AMUSE_CLONE_COMMAND}; \
 	cp -rp /tmp/amusewiki /var/lib/amusewiki && rm -rf /tmp/amusewiki; \ 
 	chown -R amusewiki:amusewiki /var/lib/amusewiki
 USER amusewiki
