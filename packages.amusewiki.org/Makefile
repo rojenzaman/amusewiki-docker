@@ -41,6 +41,7 @@ rootless-podman:
 	sed -i "s/443/$(PODMAN_HTTPS_PORT)/g" amusewiki/nginx/amusewikidebian
 	sed -i "s%http://amusewiki.localdomain%http://amusewiki.localdomain:8080%g" amusewiki/db/details.txt
 	sed -i 's/OCI = docker/OCI = podman/g' lib/make.config
+	$(POST_SETUP)
 	cat amusewiki/db/details.txt
 	@printf "\n\nplease set up a reserve proxy to $(PODMAN_HTTP_PORT) and $(PODMAN_HTTPS_PORT) port:\n\n"
 	@cat lib/example_proxy
