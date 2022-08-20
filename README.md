@@ -5,6 +5,10 @@
 https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=layers
 -->
 
+### Be careful!
+
+This repo assumes you don't want to use non-sqlite databases.
+
 ### How to use?
 
 Clone this repo:
