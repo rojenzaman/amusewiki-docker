@@ -47,7 +47,7 @@ docker-compose up -d
 If you want to run under rootless podman, please execute the following instead of above:
 
 ```bash
-make rootless-podman
+make setup-example-rootless-podman-stack
 ```
 
 ```bash
