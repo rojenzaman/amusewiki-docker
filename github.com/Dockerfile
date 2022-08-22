@@ -49,9 +49,9 @@ RUN adduser --home /var/lib/amusewiki amusewiki --disabled-password --gecos ""; 
 	chmod 0440 /etc/sudoers.d/amusewiki-temp /etc/sudoers.d/amusewiki
 
 # quality of life
-#RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc; \
-#	echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc; \
-#	echo "source /etc/bash_completion" >> ${HOME}/.bashrc;
+RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc; \
+	echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc; \
+	echo "source /etc/bash_completion" >> ${HOME}/.bashrc;
 
 # Switch to amusewiki user and install
 ARG AMUSE_CLONE_COMMAND

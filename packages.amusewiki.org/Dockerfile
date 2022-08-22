@@ -29,9 +29,9 @@ RUN wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -; 
 ENV DEBIAN_FRONTEND newt
 
 # quality of life
-#RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc \
-#	echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc; \
-#	echo "source /etc/bash_completion" >> ${HOME}/.bashrc; \
+RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc \
+	echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc; \
+	echo "source /etc/bash_completion" >> ${HOME}/.bashrc; \
 
 # amusewiki nginx compatible
 RUN rm -f /etc/nginx/sites-enabled/* /etc/nginx/sites-available/* /etc/nginx/conf.d/*; \
