@@ -1,4 +1,3 @@
-
 [![](https://img.shields.io/docker/image-size/rojen/amusewiki/latest)](https://hub.docker.com/r/rojen/amusewiki) [![rojen/amusewiki:package](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/package.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/package.yml) [![rojen/amusewiki:git](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/git.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/git.yml)  [![](https://img.shields.io/docker/pulls/rojen/amusewiki)](https://hub.docker.com/r/rojen/amusewiki)
 
 <!--
@@ -23,10 +22,16 @@ To use container with official packages, go to `package.amusewiki.org` directory
 cd amusewiki-docker/packages.amusewiki.org
 ```
 
-To use container with amusewiki git source, go to `github.com` directory:
+To use container with amusewiki git source and texlive-base, go to `github.com` directory:
 
 ```bash
 cd amusewiki-docker/github.com
+```
+
+To use container with amusewiki git source and texlive-full, go to `texlive-full` directory:
+
+```bash
+cd amusewiki-docker/texlive-full
 ```
 
 Create sqlite database and repo files for the amusewiki docker-compose stack (if you have please replace with them):

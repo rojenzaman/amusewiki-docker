@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  app:
+    network_mode: host
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        AMUSE_BUILD_DOMAIN: amusewiki.localdomain
+        AMUSE_CLONE_COMMAND: 'git clone https://github.com/melmothx/amusewiki.git /var/lib/amusewiki'
+    volumes:
+      - './amusewiki/repo:/var/lib/amusewiki/repo'
+      - './amusewiki/thumbnails:/var/lib/amusewiki/thumbnails'
+      - './amusewiki/db/sqlite.db:/var/lib/amusewiki/sqlite.db'
+      - './amusewiki/db/dbic.yaml:/var/lib/amusewiki/dbic.yaml'
+      - './amusewiki/nginx/amusewiki:/etc/nginx/sites-enabled/amusewiki'
