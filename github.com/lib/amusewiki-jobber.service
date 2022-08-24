@@ -6,7 +6,7 @@ After=nss-user-lookup.target
 WorkingDirectory=/var/lib/amusewiki
 User=amusewiki
 Group=amusewiki
-Environment="PATH=/var/lib/amusewiki/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 ExecStart=/var/lib/amusewiki/script/amusewiki-jobber
 Restart=always
 

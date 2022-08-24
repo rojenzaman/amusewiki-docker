@@ -4,4 +4,4 @@ sudo nginx -s stop &>/dev/null
 sudo nginx &>/dev/null
 sudo chown -R amusewiki:amusewiki /var/lib/amusewiki &>/dev/null
 
-/var/lib/amusewiki/script/amusewiki-jobber-exec "$@"
+/usr/bin/carton exec perl -I/var/lib/amusewiki/lib /var/lib/amusewiki/script/amusewiki-jobber-exec
