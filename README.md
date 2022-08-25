@@ -1,8 +1,14 @@
-[![](https://img.shields.io/docker/image-size/rojen/amusewiki/latest)](https://hub.docker.com/r/rojen/amusewiki) [![rojen/amusewiki:package](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/package.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/package.yml) [![rojen/amusewiki:git](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/git.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/git.yml)  [![](https://img.shields.io/docker/pulls/rojen/amusewiki)](https://hub.docker.com/r/rojen/amusewiki)
+[![](https://img.shields.io/docker/image-size/rojen/amusewiki/latest)](https://hub.docker.com/r/rojen/amusewiki) [![rojen/amusewiki:package](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/package.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/package.yml) [![rojen/amusewiki:git](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/git.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/git.yml) [![rojen/amusewiki:texlive-full](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/texlive-full.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/texlive-full.yml) [![](https://img.shields.io/docker/pulls/rojen/amusewiki)](https://hub.docker.com/r/rojen/amusewiki)
 
 <!--
 https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=layers
 -->
+
+### Tags
+
+ - [`git`](https://github.com/rojenzaman/amusewiki-docker/blob/master/github.com/Dockerfile)
+ - [`package, latest`](https://github.com/rojenzaman/amusewiki-docker/blob/master/packages.amusewiki.org/Dockerfile)
+ - [`texlive-full`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-full/Dockerfile)
 
 ### Be careful!
 
