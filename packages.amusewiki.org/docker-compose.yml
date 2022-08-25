@@ -5,8 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      #args:
-        #NOARG: 0
+      args:
+        AMW_WORKERS: 5
     volumes:
       - './amusewiki/repo:/var/lib/amusewiki/repo'
       - './amusewiki/thumbnails:/var/lib/amusewiki/thumbnails'

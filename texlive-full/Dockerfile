@@ -28,8 +28,8 @@ RUN git clone https://github.com/gdraheim/docker-systemctl-replacement /tmp/dock
 COPY lib/bash_completion/systemctl /etc/bash_completion.d
 
 # amusewiki nginx compatible
-RUN rm -f /etc/nginx/sites-enabled/* /etc/nginx/sites-available/* /etc/nginx/conf.d/*; \
-	mkdir -p /etc/nginx/sites-enabled; \
+RUN rm -f /etc/nginx/sites-enabled /etc/nginx/sites-available /etc/nginx/conf.d; \
+	mkdir -p /etc/nginx/sites-enabled /etc/nginx/conf.d; \
 	echo -e "\
 include /etc/nginx/sites-enabled/*; \n\
 client_max_body_size 8m; \
@@ -46,9 +46,11 @@ RUN adduser --home /var/lib/amusewiki amusewiki --disabled-password --gecos ""; 
 	chmod 0440 /etc/sudoers.d/amusewiki-temp /etc/sudoers.d/amusewiki
 
 # quality of life
+ARG AMW_WORKERS
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc; \
 	echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc; \
-	echo "source /etc/bash_completion" >> ${HOME}/.bashrc;
+	echo "source /etc/bash_completion" >> ${HOME}/.bashrc; \
+	echo "export AMW_WORKERS=${AMW_WORKERS}" > /etc/profile.d/amusewiki_worker.sh
 
 # Switch to amusewiki user and install
 ARG AMUSE_CLONE_COMMAND
@@ -81,10 +83,10 @@ CMD ["/usr/bin/systemctl"]
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'" >> /var/lib/amusewiki/.bashrc; \
 	echo "alias ls='ls --color=auto'" >> /var/lib/amusewiki/.bashrc; \
 	echo "source /etc/bash_completion" >> /var/lib/amusewiki/.bashrc; \
+	echo "export AMW_WORKERS=${AMW_WORKERS}" >> /var/lib/amusewiki/.bashrc; \
 	source /etc/bash_completion
-
 ENV PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'
-ENV AMW_WORKERS=5
+ENV AMW_WORKERS=${AMW_WORKERS}
 
 # restore posix shell
 RUN sudo -S unlink /bin/sh && sudo -S mv /bin/sh.local /bin/sh; \
