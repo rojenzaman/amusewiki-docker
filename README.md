@@ -1,4 +1,4 @@
-[![](https://img.shields.io/docker/image-size/rojen/amusewiki/latest)](https://hub.docker.com/r/rojen/amusewiki) [![rojen/amusewiki:package](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/package.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/package.yml) [![rojen/amusewiki:git](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/git.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/git.yml) [![rojen/amusewiki:texlive-full](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/texlive-full.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/texlive-full.yml) [![](https://img.shields.io/docker/pulls/rojen/amusewiki)](https://hub.docker.com/r/rojen/amusewiki)
+[![](https://img.shields.io/docker/image-size/rojen/amusewiki/latest)](https://hub.docker.com/r/rojen/amusewiki) [![rojen/amusewiki:package](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/package.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/package.yml) [![rojen/amusewiki:git](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/texlive-base.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/texlive-base.yml) [![rojen/amusewiki:texlive-full](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/texlive-full.yml/badge.svg)](https://github.com/rojenzaman/amusewiki-docker/actions/workflows/texlive-full.yml) [![](https://img.shields.io/docker/pulls/rojen/amusewiki)](https://hub.docker.com/r/rojen/amusewiki)
 
 <!--
 https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=layers
@@ -6,8 +6,8 @@ https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=
 
 ### Tags
 
- - [`git`](https://github.com/rojenzaman/amusewiki-docker/blob/master/github.com/Dockerfile)
  - [`package, latest`](https://github.com/rojenzaman/amusewiki-docker/blob/master/packages.amusewiki.org/Dockerfile)
+ - [`texlive-base`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-base/Dockerfile)
  - [`texlive-full`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-full/Dockerfile)
 
 ### Be careful!
@@ -28,10 +28,10 @@ To use container with official packages, go to `package.amusewiki.org` directory
 cd amusewiki-docker/packages.amusewiki.org
 ```
 
-To use container with amusewiki git source and texlive-base, go to `github.com` directory:
+To use container with amusewiki git source and texlive-base, go to `texlive-base` directory:
 
 ```bash
-cd amusewiki-docker/github.com
+cd amusewiki-docker/texlive-base
 ```
 
 To use container with amusewiki git source and texlive-full, go to `texlive-full` directory:

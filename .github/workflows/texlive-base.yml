@@ -1,4 +1,4 @@
-name: rojen/amusewiki:git
+name: rojen/amusewiki:texlive-base
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
     - name: Build the Docker image
-      run: docker build github.com/ --file github.com/Dockerfile --tag rojen/amusewiki:git --build-arg AMUSE_BUILD_DOMAIN=amusewiki.localdomain --build-arg AMUSE_CLONE_COMMAND='git clone https://github.com/melmothx/amusewiki.git /var/lib/amusewiki' --build-arg AMW_WORKERS=5
+      run: docker build texlive-base/ --file texlive-base/Dockerfile --tag rojen/amusewiki:texlive-base --build-arg AMUSE_BUILD_DOMAIN=amusewiki.localdomain --build-arg AMUSE_CLONE_COMMAND='git clone https://github.com/melmothx/amusewiki.git /var/lib/amusewiki' --build-arg AMW_WORKERS=5
 
     - name: Docker Push
-      run: docker push rojen/amusewiki:git
+      run: docker push rojen/amusewiki:texlive-base
