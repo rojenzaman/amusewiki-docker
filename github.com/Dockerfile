@@ -31,7 +31,7 @@ RUN wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -; 
 	apt-get install -y amusewiki-extra-fonts
 
 # amusewiki nginx compatible
-RUN rm -f /etc/nginx/sites-enabled /etc/nginx/sites-available /etc/nginx/conf.d; \
+RUN rm -rf /etc/nginx/sites-enabled /etc/nginx/sites-available /etc/nginx/conf.d; \
 	mkdir -p /etc/nginx/sites-enabled /etc/nginx/conf.d; \
 	echo -e "\
 include /etc/nginx/sites-enabled/*; \n\

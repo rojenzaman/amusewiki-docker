@@ -28,7 +28,7 @@ RUN git clone https://github.com/gdraheim/docker-systemctl-replacement /tmp/dock
 COPY lib/bash_completion/systemctl /etc/bash_completion.d
 
 # amusewiki nginx compatible
-RUN rm -f /etc/nginx/sites-enabled /etc/nginx/sites-available /etc/nginx/conf.d; \
+RUN rm -rf /etc/nginx/sites-enabled /etc/nginx/sites-available /etc/nginx/conf.d; \
 	mkdir -p /etc/nginx/sites-enabled /etc/nginx/conf.d; \
 	echo -e "\
 include /etc/nginx/sites-enabled/*; \n\
