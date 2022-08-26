@@ -24,11 +24,11 @@ RUN git clone https://github.com/gdraheim/docker-systemctl-replacement /tmp/dock
 	ln -sf /usr/bin/systemctl /bin/systemctl || true
 COPY lib/bash_completion/systemctl /etc/bash_completion.d
 
-# install amusewiki font
+# install amusewiki tools and fonts
 RUN wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -; \
 	echo 'deb http://packages.amusewiki.org/debian bullseye main' > /etc/apt/sources.list.d/amusewiki.list; \
 	apt-get update; \
-	apt-get install -y amusewiki-extra-fonts
+	apt-get install -y libtext-amuse-perl libtext-amuse-preprocessor-perl libtext-amuse-compile-perl amusewiki-extra-fonts
 
 # amusewiki nginx compatible
 RUN rm -rf /etc/nginx/sites-enabled /etc/nginx/sites-available /etc/nginx/conf.d; \
