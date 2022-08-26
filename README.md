@@ -12,7 +12,7 @@ https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=
 
 ### Be careful!
 
-This repo assumes you don't want to use non-sqlite databases.
+This repo assumes you want to use SQLite.
 
 ### How to use?
 
