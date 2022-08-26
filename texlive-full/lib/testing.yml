@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   app:
-    image: rojen/amusewiki:git
+    image: rojen/amusewiki:texlive-full
     network_mode: host
     volumes:
       - './amusewiki/repo:/var/lib/amusewiki/repo'
