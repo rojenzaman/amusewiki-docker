@@ -9,6 +9,11 @@ RUN apt-get update && apt-get upgrade -y; \
 		wget curl gnupg2 build-essential bash-completion nano file net-tools psmisc procps htop \
 		nginx git python3 sudo sqlite3
 
+# set locales
+RUN apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+	&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
+
 # install fake systemd
 RUN git clone https://github.com/gdraheim/docker-systemctl-replacement /tmp/docker-systemctl-replacement; \
 	cd /tmp/docker-systemctl-replacement; \

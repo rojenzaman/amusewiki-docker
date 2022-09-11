@@ -16,6 +16,11 @@ RUN apt-get update && apt-get upgrade -y; \
 		fonts-sil-charis fonts-sil-gentium fonts-sil-gentium-basic fonts-sil-scheherazade fonts-texgyre lmodern g++ libssl-dev \
 		libxapian-dev libxml2-dev libexpat1-dev libjpeg-dev libpng-dev gettext
 
+# set locales
+RUN apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+        && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
+
 # install fake systemd
 RUN git clone https://github.com/gdraheim/docker-systemctl-replacement /tmp/docker-systemctl-replacement; \
 	cd /tmp/docker-systemctl-replacement; \
