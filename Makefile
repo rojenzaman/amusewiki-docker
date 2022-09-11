@@ -1,4 +1,4 @@
-defual:
+default:
 	@true
 
 clean-all:
