@@ -8,7 +8,7 @@ https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=
 
 ### Tags
 
- - [`package, latest`](https://github.com/rojenzaman/amusewiki-docker/blob/master/packages.amusewiki.org/Dockerfile)
+ - [`package, latest`](https://github.com/rojenzaman/amusewiki-docker/blob/master/package/Dockerfile)
  - [`texlive-base`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-base/Dockerfile)
  - [`texlive-full`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-full/Dockerfile)
 
@@ -27,7 +27,7 @@ git clone https://github.com/rojenzaman/amusewiki-docker
 To use container with official packages, go to `package.amusewiki.org` directory:
 
 ```bash
-cd amusewiki-docker/packages.amusewiki.org
+cd amusewiki-docker/package
 ```
 
 To use container with amusewiki git source and texlive-base, go to `texlive-base` directory:
