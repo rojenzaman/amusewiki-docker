@@ -14,7 +14,7 @@ https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=
 
 ### Be careful!
 
-This repo assumes you want to use SQLite as a database.
+This repo use SQLite as a database. Currently MySQL and PostgreSQL are not supported. See: [TODO](https://github.com/rojenzaman/amusewiki-docker/blob/master/TODO.md)
 
 ### How to use?
 
