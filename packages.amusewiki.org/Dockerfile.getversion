@@ -1,0 +1,15 @@
+FROM debian:latest
+
+# install requirements
+RUN apt-get update && apt-get install -y gnupg2 wget
+
+# install amusewiki from source
+RUN wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -; \
+	echo 'deb http://packages.amusewiki.org/debian bullseye main' > /etc/apt/sources.list.d/amusewiki.list; \
+	apt-get update
+
+# print version
+RUN apt show amusewiki 2>/dev/null | grep Version | awk '{print $2}' | cut -d "-" -f1 > /version
+
+# main
+CMD ["cat", "/version"]

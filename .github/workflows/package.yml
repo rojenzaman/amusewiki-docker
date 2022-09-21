@@ -21,8 +21,11 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
+    - name: Build the Docker image version
+      run: docker build packages.amusewiki.org/ --file packages.amusewiki.org/Dockerfile.getversion --tag amw_version
+
     - name: Build the Docker image
-      run: docker build packages.amusewiki.org/ --file packages.amusewiki.org/Dockerfile --tag rojen/amusewiki:latest --tag rojen/amusewiki:package --build-arg AMW_WORKERS=5
+      run: docker build packages.amusewiki.org/ --file packages.amusewiki.org/Dockerfile --tag rojen/amusewiki:latest --tag rojen/amusewiki:package --tag rojen/amusewiki:package-$(docker run amw_version) --build-arg AMW_WORKERS=5
 
     - name: Docker Push
-      run: docker push rojen/amusewiki:package; docker push rojen/amusewiki:latest
+      run: docker push rojen/amusewiki:package; docker push rojen/amusewiki:latest; docker push rojen/amusewiki:package-$(docker run amw_version)
