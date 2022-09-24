@@ -8,5 +8,5 @@ services:
       - './amusewiki/thumbnails:/var/lib/amusewiki/thumbnails'
       - './amusewiki/db/sqlite.db:/var/lib/amusewiki/sqlite.db'
       - './amusewiki/db/dbic.yaml:/var/lib/amusewiki/dbic.yaml'
-      - './amusewiki/nginx/amusewikidebian:/etc/nginx/sites-enabled/amusewikidebian'
-
+      - './amusewiki/nginx:/etc/nginx/sites-enabled'
+    env_file: lib/container.env

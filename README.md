@@ -48,6 +48,12 @@ Create sqlite database and repo files for the amusewiki docker-compose stack (if
 make setup-example-stack
 ```
 
+The default domain is [amusewiki.localdomain](http://amusewiki.localdomain). To change it, edit this line in `lib/container.env`:
+
+```bash
+#POST_DOMAIN=localhost
+```
+
 Then build/pull and run:
 
 ```bash

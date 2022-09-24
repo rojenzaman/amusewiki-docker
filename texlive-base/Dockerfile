@@ -84,6 +84,7 @@ RUN ./script/install.sh || true; \
 RUN sudo systemctl enable amusewiki-web amusewiki-jobber nginx; \ 
 	sudo mv /var/lib/amusewiki/script/amusewiki-jobber /var/lib/amusewiki/script/amusewiki-jobber-exec
 COPY lib/amusewiki-jobber /var/lib/amusewiki/script
+COPY lib/post-domain.sh /usr/bin
 COPY lib/amusewiki-jobber.service /etc/systemd/system
 CMD ["/usr/bin/systemctl"]
 

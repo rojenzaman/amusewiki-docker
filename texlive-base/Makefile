@@ -37,7 +37,7 @@ backup-external:
 	tar -cvf lib/amusewiki.tar -C lib/containerless-backup amusewiki/
 
 exec:
-	lib/exec.sh $(OCI) $(TAG)
+	lib/exec.sh $(OCI) $(TAG) $(ENV_FILE)
 
 help:
 	@lib/makehelp.sh
