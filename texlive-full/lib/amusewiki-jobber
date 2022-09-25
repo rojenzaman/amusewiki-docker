@@ -4,6 +4,7 @@ sudo nginx -s stop &>/dev/null
 sudo chown -R amusewiki:amusewiki /var/lib/amusewiki &>/dev/null
 post-domain.sh &>/dev/null
 sudo nginx &>/dev/null
+post-nginx.sh &>/dev/null
 carton exec script/amusewiki-upgrade-db &>/dev/null &
 
 /usr/bin/carton exec perl -I/var/lib/amusewiki/lib /var/lib/amusewiki/script/amusewiki-jobber-exec

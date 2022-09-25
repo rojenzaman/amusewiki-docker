@@ -9,7 +9,6 @@ else
 fi
 
 # set variable
-NGX_PREFIX="amusewiki"
 INITIAL_DOMAIN_ID="1"
 INITIAL_DOMAIN="$(sqlite3 "${DB}" "SELECT canonical FROM site WHERE rowid = ${INITIAL_DOMAIN_ID};")"
 

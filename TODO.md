@@ -4,6 +4,7 @@
 - [x] Create directory based app volume
 - [x] Create docker-compose.yml, Makefile
 - [x] Change domain after running the container. Apply a script from this method: https://git.coopcloud.tech/coop-cloud/amusewiki (:package)
+- [x] Post settings for HTTPS traefik. Apply a ascript from this method: https://git.coopcloud.tech/coop-cloud/amusewiki
 - [ ] Support for MySQL, PostgreSQL
 - [ ] Incremental backup
 - [x] Public versioning of the package tag.

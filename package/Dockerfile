@@ -66,6 +66,7 @@ RUN systemctl enable amusewiki-web amusewiki-jobber nginx; \
 	mv /usr/bin/amusewiki-jobber /usr/bin/amusewiki-jobber-exec
 COPY lib/amusewiki-jobber /usr/bin
 COPY lib/post-domain.sh /usr/bin
+COPY lib/post-nginx.sh /usr/bin
 CMD ["/usr/bin/systemctl"]
 
 # quality of life
