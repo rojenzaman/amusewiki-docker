@@ -16,17 +16,11 @@ https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=
 
 This repo use SQLite as a database. Currently MySQL and PostgreSQL are not supported. See: [TODO](https://github.com/rojenzaman/amusewiki-docker/blob/master/TODO.md)
 
-### Quickly deploy a demo on [PlayWithDocker](https://labs.play-with-docker.com/)
+### Quickly deploy a demo on [PlayWithDocker](http://play-with-docker.com?stack=https://raw.githubusercontent.com/rojenzaman/amusewiki-docker/master/_testing/pwd/stack.yml&stack_name=amusewiki)
 
-Run following command inside PlayWithDocker container:
+[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](http://play-with-docker.com?stack=https://raw.githubusercontent.com/rojenzaman/amusewiki-docker/master/_testing/pwd/stack.yml&stack_name=amusewiki)
 
-```bash
-docker run -d \
--e "POST_DOMAIN=ip$(ip a s eth1 | egrep -o 'inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d' ' -f2 | sed 's/\./\-/g')-${SESSION_ID}-80.direct.${PWD_HOST_FQDN}" \
---network host --name amusewiki_pwd rojen/amusewiki:package
-```
-
-then click `open port` and select `80`.
+Click the button above, then click **start**, wait for it to deploy and click on port **80**.
 
 ### How to use?
 

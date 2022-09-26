@@ -11,3 +11,4 @@
 - [x] Public versioning of the package tag.
 - [ ] Local versioning of the package tag.
 - [x] Update remote tar
+- [x] Support "Try in PWD"

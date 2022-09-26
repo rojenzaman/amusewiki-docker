@@ -11,6 +11,7 @@ fi
 # set variable
 INITIAL_DOMAIN_ID="1"
 INITIAL_DOMAIN="$(sqlite3 "${DB}" "SELECT canonical FROM site WHERE rowid = ${INITIAL_DOMAIN_ID};")"
+if [[ ${CONTAINER_IS_IN_PWD} == true ]]; then POST_DOMAIN="ip$(ip a s eth1 | egrep -o 'inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d' ' -f2 | sed 's/\./\-/g')-${SESSION_ID}-${PWD_PORT}.direct.${PWD_HOST_FQDN}"; fi
 
 # check variable and status
 # terminate if domain is not set
