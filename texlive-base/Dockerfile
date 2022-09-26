@@ -98,6 +98,9 @@ RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\
 ENV PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'
 ENV AMW_WORKERS=${AMW_WORKERS}
 
+# set amusewiki nginx prefix
+ENV NGX_PREFIX=amusewiki
+
 # restore posix shell
 RUN sudo -S unlink /bin/sh && sudo -S mv /bin/sh.local /bin/sh; \
 	sudo -S rm -f /etc/sudoers.d/amusewiki-temp
