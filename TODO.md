@@ -12,3 +12,4 @@
 - [ ] Local versioning of the package tag.
 - [x] Update remote tar
 - [x] Support "Try in PWD"
+- [ ] Set default password to all images
