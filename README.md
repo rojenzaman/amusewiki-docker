@@ -16,6 +16,18 @@ https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=
 
 This repo use SQLite as a database. Currently MySQL and PostgreSQL are not supported. See: [TODO](https://github.com/rojenzaman/amusewiki-docker/blob/master/TODO.md)
 
+### Quickly deploy a demo on [PlayWithDocker](https://labs.play-with-docker.com/)
+
+Run following command inside PlayWithDocker container:
+
+```bash
+docker run -d \
+-e "POST_DOMAIN=ip$(ip a s eth1 | egrep -o 'inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d' ' -f2 | sed 's/\./\-/g')-${SESSION_ID}-80.direct.${PWD_HOST_FQDN}" \
+--network host --name amusewiki_pwd rojen/amusewiki:package
+```
+
+then click `open port` and select `80`.
+
 ### How to use?
 
 Clone this repo:
@@ -81,3 +93,7 @@ podman-compose up -d --build
 cp lib/testing.yml docker-compose.yml
 podman-compose up -d
 ```
+
+## Related Projects
+
+ - [coop-cloud/amusewiki](https://git.coopcloud.tech/coop-cloud/amusewiki): Run amusewiki on [Co-op Cloud](https://docs.coopcloud.tech) with HTTPS Traefik.
