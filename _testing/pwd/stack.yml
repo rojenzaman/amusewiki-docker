@@ -13,17 +13,6 @@ services:
       - AMW_WORKERS=5
     networks:
       - outside
-  # publish port 80 to the empty container so the port link will be accessible from the PWD web interface
-  empty:
-    image: hello-world
-    ports:
-      - 80:80 # change to 443:443 if you want to use https
-    deploy:
-      restart_policy: # disable container
-        condition: none
-        delay: 4h
-        max_attempts: 1
-        window: 4h
 networks:
   outside:
     name: host
