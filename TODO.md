@@ -13,4 +13,4 @@
 - [x] Update remote tar
 - [x] Support "Try in PWD"
 - [ ] Set default password to all images
-- [ ] Auto open port for PWD
+- [x] Auto open port for PWD

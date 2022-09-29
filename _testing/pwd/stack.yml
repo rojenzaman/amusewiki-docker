@@ -11,9 +11,5 @@ services:
       - CONTAINER_IS_IN_PWD=true
       - PWD_PORT=80 # change to 443 if you want to use https
       - AMW_WORKERS=5
-    networks:
-      - outside
-networks:
-  outside:
-    name: host
-    external: true
+    ports:
+      - 80:80 # change to 443:443 if you want to use https

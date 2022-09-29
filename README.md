@@ -20,7 +20,7 @@ This repo use SQLite as a database. Currently MySQL and PostgreSQL are not suppo
 
 [![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/rojenzaman/amusewiki-docker/master/_testing/pwd/stack.yml&stack_name=amusewiki)
 
-Click the button above then click **start**, wait for it to deploy. Then open port **80** and click on it.
+Click the button above then click **start**, wait for it to deploy. Then click **80**.
 
 ### How to use?
 

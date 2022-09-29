@@ -1,10 +1,10 @@
 #!/bin/bash
-PWD_PORT=${1}; OCI=${2:-docker}; ID=${RANDOM}; if [[ "$#" -lt 1 ]]; then echo "Usage: ${BASH_SOURCE[0]} <port> [docker|podman]"; exit 1; fi
-if ! [[ "${PWD_PORT}" =~ ^(80|443)$ ]]; then echo "port must be 80 or 443"; exit 1; fi
+PWD_PORT=${1}; PORT_TYPE=${2:-http}; OCI=${3:-docker}; ID=${RANDOM}; if [[ "$#" -lt 1 ]]; then echo "Usage: ${BASH_SOURCE[0]} <port> [http|https] [docker|podman]"; exit 1; fi
+case ${PORT_TYPE} in https) BIND_PORT=443;; *) BIND_PORT=80;; esac
 
 # main
 echo "deploying amusewiki_pwd_${ID}"
-${OCI} run -d --network host \
+${OCI} run -d -p ${PWD_PORT}:${BIND_PORT}  \
  -e PWD_HOST_FQDN=labs.play-with-docker.com \
  -e SESSION_ID=${SESSION_ID} \
  -e CONTAINER_IS_IN_PWD=true \
