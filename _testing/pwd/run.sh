@@ -5,7 +5,7 @@ if ! [[ "${PWD_PORT}" =~ ^(80|443)$ ]]; then echo "port must be 80 or 443"; exit
 # main
 echo "deploying amusewiki_pwd_${ID}"
 ${OCI} run -d --network host \
- -e PWD_HOST_FQDN=${PWD_HOST_FQDN} \
+ -e PWD_HOST_FQDN=labs.play-with-docker.com \
  -e SESSION_ID=${SESSION_ID} \
  -e CONTAINER_IS_IN_PWD=true \
  -e PWD_PORT=${PWD_PORT} \
