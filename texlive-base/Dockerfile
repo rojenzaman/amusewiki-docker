@@ -69,6 +69,8 @@ RUN mv /var/lib/amusewiki /tmp; \
 USER amusewiki
 WORKDIR /var/lib/amusewiki
 ARG AMUSE_BUILD_DOMAIN
+ARG AMW_USERNAME
+ARG AMW_PASSWORD
 RUN ./script/install.sh || true; \
 	cp dbic.yaml.sqlite.example dbic.yaml; \
 	carton exec script/configure.sh ${AMUSE_BUILD_DOMAIN} > details.txt; \
@@ -78,7 +80,9 @@ RUN ./script/install.sh || true; \
 	carton exec script/generate-systemd-unit-files ./var/tmp/systemd; \
 	sudo cp -v ./var/tmp/systemd/* /etc/systemd/system/; \
 	sudo chown root:root /etc/systemd/system/amusewiki-*; \
-	sudo chmod 664 /etc/systemd/system/amusewiki-*
+	sudo chmod 664 /etc/systemd/system/amusewiki-*; \
+	# change amusewiki password \
+	carton exec script/amusewiki-reset-password ${AMW_USERNAME} ${AMW_PASSWORD}
 
 # set ENTRYPOINT
 RUN sudo systemctl enable amusewiki-web amusewiki-jobber nginx; \ 
@@ -97,6 +101,8 @@ RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\
 	source /etc/bash_completion
 ENV PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'
 ENV AMW_WORKERS=${AMW_WORKERS}
+ENV AMW_USERNAME=${AMW_USERNAME}
+ENV AMW_PASSWORD=${AMW_PASSWORD}
 
 # set amusewiki nginx prefix
 ENV NGX_PREFIX=amusewiki

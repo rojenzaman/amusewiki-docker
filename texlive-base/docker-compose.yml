@@ -9,6 +9,8 @@ services:
         AMUSE_BUILD_DOMAIN: amusewiki.localdomain
         AMUSE_CLONE_COMMAND: 'git clone https://github.com/melmothx/amusewiki.git /var/lib/amusewiki'
         AMW_WORKERS: 5
+        AMW_USERNAME: amusewiki
+        AMW_PASSWORD: changeme
     volumes:
       - './amusewiki/repo:/var/lib/amusewiki/repo'
       - './amusewiki/thumbnails:/var/lib/amusewiki/thumbnails'
