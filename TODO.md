@@ -13,3 +13,4 @@
 - [x] Support "Try in PWD"
 - [x] Set default password to all images
 - [x] Auto open port for PWD
+- [ ] Empty initial site
