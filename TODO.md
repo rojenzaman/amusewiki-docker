@@ -5,7 +5,6 @@
 - [x] Create docker-compose.yml, Makefile
 - [x] Change domain after running the container. Apply a script from this method: https://git.coopcloud.tech/coop-cloud/amusewiki (:package)
 - [x] Post settings for HTTPS traefik. Apply a ascript from this method: https://git.coopcloud.tech/coop-cloud/amusewiki
-- [ ] Pass amusewiki username and password to env from: `/var/log/amusewiki/installation.log` [*](https://git.coopcloud.tech/coop-cloud/amusewiki#post-install)
 - [ ] Support for MySQL, PostgreSQL
 - [ ] Incremental backup
 - [x] Public versioning of the package tag.
