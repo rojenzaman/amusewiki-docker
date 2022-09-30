@@ -22,72 +22,13 @@ This repo use SQLite as a database. Currently MySQL and PostgreSQL are not suppo
 
 Click the button above then click **start**, wait for it to deploy. Then click **80**.
 
+ - The default username is: `amusewiki`
+ - The default password is: `changeme`
+
 ### How to use?
 
-Clone this repo:
+Read the usage notes: [amusewiki-docker/wiki](https://github.com/rojenzaman/amusewiki-docker/wiki)
 
-```bash
-git clone https://github.com/rojenzaman/amusewiki-docker
-```
-
-To use container with official packages, go to `package.amusewiki.org` directory:
-
-```bash
-cd amusewiki-docker/package
-```
-
-To use container with amusewiki git source and texlive-base, go to `texlive-base` directory:
-
-```bash
-cd amusewiki-docker/texlive-base
-```
-
-To use container with amusewiki git source and texlive-full, go to `texlive-full` directory:
-
-```bash
-cd amusewiki-docker/texlive-full
-```
-
-Create sqlite database and repo files for the amusewiki docker-compose stack (if you have please replace with them):
-
-```bash
-make setup-example-stack
-```
-
-The default domain is [amusewiki.localdomain](http://amusewiki.localdomain). To change it, edit this line in `lib/container.env`:
-
-```bash
-#POST_DOMAIN=localhost
-```
-
-Then build/pull and run:
-
-```bash
-# to build and run
-docker-compose up -d --build
-
-# to pull and run
-cp lib/testing.yml docker-compose.yml
-docker-compose up -d
-```
-
-#### Rootless Podman
-
-If you want to run under rootless podman, please execute the following instead of above:
-
-```bash
-make setup-example-rootless-podman-stack
-```
-
-```bash
-# to build and run:
-podman-compose up -d --build
-
-# to pull and run:
-cp lib/testing.yml docker-compose.yml
-podman-compose up -d
-```
-
-## Related Projects
+### Related Projects
 
  - [coop-cloud/amusewiki](https://git.coopcloud.tech/coop-cloud/amusewiki): Run amusewiki on [Co-op Cloud](https://docs.coopcloud.tech) with HTTPS Traefik.
