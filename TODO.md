@@ -1,6 +1,6 @@
 ### TODO
 
-- [ ] Create good documentation
+- [ ] Create good documentation: [amusewiki-docker/wiki](https://github.com/rojenzaman/amusewiki-docker/wiki)
 - [x] Create directory based app volume
 - [x] Create docker-compose.yml, Makefile
 - [x] Change domain after running the container. Apply a script from this method: https://git.coopcloud.tech/coop-cloud/amusewiki (:package)
