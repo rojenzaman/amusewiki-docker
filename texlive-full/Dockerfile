@@ -55,7 +55,11 @@ ARG AMW_WORKERS
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc; \
 	echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc; \
 	echo "source /etc/bash_completion" >> ${HOME}/.bashrc; \
-	echo "export AMW_WORKERS=${AMW_WORKERS}" > /etc/profile.d/amusewiki_worker.sh
+	echo "export AMW_WORKERS=${AMW_WORKERS}" > /etc/profile.d/amusewiki_worker.sh; \
+	# db directory support \
+	mkdir -p /var/lib/dbconfig-common/sqlite3/amusewiki; \
+	ln -s /var/lib/amusewiki/sqlite.db /var/lib/dbconfig-common/sqlite3/amusewiki/amusewiki; \
+	ln -s /var/lib/amusewiki/dbic.yaml /var/lib/dbconfig-common/sqlite3/amusewiki/dbic.yaml
 
 # Switch to amusewiki user and install
 ARG AMUSE_CLONE_COMMAND
