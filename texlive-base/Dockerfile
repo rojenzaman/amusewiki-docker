@@ -108,6 +108,7 @@ ENV PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e
 ENV AMW_WORKERS=${AMW_WORKERS}
 ENV AMW_USERNAME=${AMW_USERNAME}
 ENV AMW_PASSWORD=${AMW_PASSWORD}
+COPY lib/backup_amw.sh /usr/bin
 
 # set amusewiki nginx prefix
 ENV NGX_PREFIX=amusewiki
