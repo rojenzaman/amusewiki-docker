@@ -83,7 +83,9 @@ RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\
 	echo "export AMW_WORKERS=${AMW_WORKERS}" >> /var/lib/amusewiki/.bashrc; \
 	source /etc/bash_completion; \
 	# change amusewiki password \
-	amusewiki-reset-password ${AMW_USERNAME} ${AMW_PASSWORD}
+	amusewiki-reset-password ${AMW_USERNAME} ${AMW_PASSWORD}; \
+	# generate ssh key \
+	ssh-keygen -q -t rsa -N '' -f /var/lib/amusewiki/.ssh/id_rsa <<<y >/dev/null 2>&1
 ENV PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'
 ENV AMW_WORKERS=${AMW_WORKERS}
 ENV AMW_USERNAME=${AMW_USERNAME}
