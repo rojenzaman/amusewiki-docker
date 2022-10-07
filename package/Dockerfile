@@ -7,7 +7,7 @@ RUN mv /bin/sh /bin/sh.local && ln -s /bin/bash /bin/sh
 RUN apt-get update && apt-get upgrade -y; \
 	apt-get install -y \
 		wget curl gnupg2 build-essential bash-completion nano file net-tools psmisc procps htop jq \
-		nginx git python3 sudo sqlite3
+		nginx git python3 sudo sqlite3 openssh-server
 
 # set locales
 RUN apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
@@ -64,7 +64,7 @@ RUN cat /tmp/nginx-amusewiki-*/amusewikidebian_include > /etc/nginx/amusewikideb
 	cat /tmp/nginx-amusewiki-*/amusewikidebian > /etc/nginx/sites-enabled/amusewikidebian
 
 # set ENTRYPOINT
-RUN systemctl enable amusewiki-web amusewiki-jobber nginx; \
+RUN systemctl enable amusewiki-web amusewiki-jobber nginx ssh; \
 	mv /usr/bin/amusewiki-jobber /usr/bin/amusewiki-jobber-exec
 COPY lib/amusewiki-jobber /usr/bin
 COPY lib/post-domain.sh /usr/bin

@@ -7,7 +7,7 @@ RUN mv /bin/sh /bin/sh.local && ln -s /bin/bash /bin/sh
 RUN apt-get update && apt-get upgrade -y; \
 	apt-get install -y \
 		wget curl gnupg2 build-essential bash-completion nano file net-tools psmisc procps htop \
-		python3 sudo sqlite3; \
+		python3 sudo sqlite3 openssh-server; \
 	apt-get install --no-install-recommends --no-install-suggests -y \
 		carton cpanminus fontconfig gcc ghostscript git graphicsmagick imagemagick make rsync \
 		shared-mime-info unzip xapian-tools nginx texlive-base texlive-fonts-recommended texlive-fonts-recommended-doc \
@@ -89,7 +89,7 @@ RUN ./script/install.sh || true; \
 	carton exec script/amusewiki-reset-password ${AMW_USERNAME} ${AMW_PASSWORD}
 
 # set ENTRYPOINT
-RUN sudo systemctl enable amusewiki-web amusewiki-jobber nginx; \ 
+RUN sudo systemctl enable amusewiki-web amusewiki-jobber nginx ssh; \
 	sudo mv /var/lib/amusewiki/script/amusewiki-jobber /var/lib/amusewiki/script/amusewiki-jobber-exec
 COPY lib/amusewiki-jobber /var/lib/amusewiki/script
 COPY lib/post-domain.sh /usr/bin
