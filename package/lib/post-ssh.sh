@@ -13,4 +13,7 @@ if [ -z "${HOST_SSH_PUBLIC_KEY}" ]; then
 else
 	# write ssh key
 	echo "${HOST_SSH_PUBLIC_KEY}" > /var/lib/amusewiki/.ssh/authorized_keys
+	# enable and start sshd service
+	sudo systemctl enable sshd
+	sudo systemctl start sshd
 fi

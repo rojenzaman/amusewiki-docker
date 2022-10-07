@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo nginx -s stop &>/dev/null
-post-ssh.sh &>/dev/null
+post-ssh.sh &>/dev/null &
 sudo chown -R amusewiki:amusewiki \
 	/var/lib/amusewiki/repo \
 	/var/lib/amusewiki/thumbnails \
