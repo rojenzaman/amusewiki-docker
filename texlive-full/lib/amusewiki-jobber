@@ -1,5 +1,6 @@
 #!/bin/bash
 
+if [ ! -f /etc/nginx/sites-enabled/${NGX_PREFIX} ]; then if [ -f /etc/nginx/amusewikidebian_include ]; then export NGX_PREFIX=amusewikidebian; fi; if [ -f /etc/nginx/amusewiki_include ]; then export NGX_PREFIX=amusewiki; fi; fi
 sudo nginx -s stop &>/dev/null
 post-ssh.sh &>/dev/null &
 sudo chown -R amusewiki:amusewiki \

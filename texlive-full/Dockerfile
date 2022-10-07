@@ -109,6 +109,7 @@ ENV AMW_WORKERS=${AMW_WORKERS}
 ENV AMW_USERNAME=${AMW_USERNAME}
 ENV AMW_PASSWORD=${AMW_PASSWORD}
 COPY lib/backup_amw.sh /usr/bin
+COPY lib/re-configure-nginx.sh /usr/bin
 
 # set amusewiki nginx prefix
 ENV NGX_PREFIX=amusewiki
