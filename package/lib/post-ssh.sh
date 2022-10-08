@@ -4,6 +4,7 @@
 # host ssh config:
 #   host amusewiki.localdomain
 #   hostname 127.0.0.1
+#   StrictHostKeyChecking no
 #   user amusewiki
 #   port 6022
 
