@@ -34,11 +34,9 @@ RUN wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -; 
 ENV DEBIAN_FRONTEND newt
 
 # quality of life
-ARG AMW_WORKERS
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc \
 	echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc; \
 	echo "source /etc/bash_completion" >> ${HOME}/.bashrc; \
-	echo "export AMW_WORKERS=${AMW_WORKERS}" > /etc/profile.d/amusewiki_worker.sh; \
 	# db directory support \
 	ln -s /var/lib/amusewiki/dbic.yaml /var/lib/dbconfig-common/sqlite3/amusewiki/dbic.yaml
 
@@ -76,12 +74,12 @@ CMD ["/usr/bin/systemctl"]
 # quality of life
 USER amusewiki
 WORKDIR /var/lib/amusewiki
+ARG AMW_WORKERS
 ARG AMW_USERNAME
 ARG AMW_PASSWORD
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'" >> /var/lib/amusewiki/.bashrc; \
 	echo "alias ls='ls --color=auto'" >> /var/lib/amusewiki/.bashrc; \
 	echo "source /etc/bash_completion" >> /var/lib/amusewiki/.bashrc; \
-	echo "export AMW_WORKERS=${AMW_WORKERS}" >> /var/lib/amusewiki/.bashrc; \
 	source /etc/bash_completion; \
 	# change amusewiki password \
 	amusewiki-reset-password ${AMW_USERNAME} ${AMW_PASSWORD}; \

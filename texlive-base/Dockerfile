@@ -54,11 +54,9 @@ RUN adduser --home /var/lib/amusewiki amusewiki --disabled-password --gecos ""; 
 	chmod 0440 /etc/sudoers.d/amusewiki-temp /etc/sudoers.d/amusewiki
 
 # quality of life
-ARG AMW_WORKERS
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc; \
 	echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc; \
 	echo "source /etc/bash_completion" >> ${HOME}/.bashrc; \
-	echo "export AMW_WORKERS=${AMW_WORKERS}" > /etc/profile.d/amusewiki_worker.sh; \
 	# db directory support \
 	mkdir -p /var/lib/dbconfig-common/sqlite3/amusewiki; \
 	ln -s /var/lib/amusewiki/sqlite.db /var/lib/dbconfig-common/sqlite3/amusewiki/amusewiki; \
@@ -73,6 +71,7 @@ RUN mv /var/lib/amusewiki /tmp; \
 USER amusewiki
 WORKDIR /var/lib/amusewiki
 ARG AMUSE_BUILD_DOMAIN
+ARG AMW_WORKERS
 ARG AMW_USERNAME
 ARG AMW_PASSWORD
 RUN ./script/install.sh || true; \
@@ -103,7 +102,6 @@ CMD ["/usr/bin/systemctl"]
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'" >> /var/lib/amusewiki/.bashrc; \
 	echo "alias ls='ls --color=auto'" >> /var/lib/amusewiki/.bashrc; \
 	echo "source /etc/bash_completion" >> /var/lib/amusewiki/.bashrc; \
-	echo "export AMW_WORKERS=${AMW_WORKERS}" >> /var/lib/amusewiki/.bashrc; \
 	source /etc/bash_completion; \
 	# generate ssh key \
 	ssh-keygen -q -t rsa -N '' -f /var/lib/amusewiki/.ssh/id_rsa <<<y >/dev/null 2>&1
