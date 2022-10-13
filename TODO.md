@@ -19,3 +19,5 @@
 - [ ] Change domain by ID
 - [x] SSH support
 - [x] SSH key support
+- [ ] Run specific branch
+- [ ] Fix permission issues for repo objects
