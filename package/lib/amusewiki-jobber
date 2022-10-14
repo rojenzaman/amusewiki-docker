@@ -11,6 +11,8 @@ sudo chown -R amusewiki:amusewiki \
 	/var/lib/dbconfig-common/sqlite3/amusewiki \
 	/var/lib/amusewiki/.ssh \
 	&>/dev/null &
+sudo chmod 755 /var/lib/amusewiki/repo/*/uploads &
+sudo chmod 644 /var/lib/amusewiki/repo/*/uploads/* &
 post-domain.sh &>/dev/null
 post-nginx.sh &>/dev/null
 post-password.sh &>/dev/null &

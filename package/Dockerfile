@@ -52,7 +52,7 @@ client_max_body_size 8m; \
 
 # give sudo to amusewiki
 RUN echo 'amusewiki ALL=NOPASSWD: /bin/mv,/usr/bin/unlink,/bin/rm' >> /etc/sudoers.d/amusewiki-temp; \
-	echo 'amusewiki ALL=NOPASSWD: /bin/chown,/usr/sbin/nginx,/usr/sbin/amusewiki,/usr/bin/systemctl,/usr/bin/apt' >> /etc/sudoers.d/amusewiki; \
+	echo 'amusewiki ALL=NOPASSWD: /bin/chown,/usr/sbin/nginx,/usr/sbin/amusewiki,/usr/bin/systemctl,/usr/bin/apt,/bin/chmod' >> /etc/sudoers.d/amusewiki; \
 	chmod 0440 /etc/sudoers.d/amusewiki-temp /etc/sudoers.d/amusewiki
 
 # install nginx configuration

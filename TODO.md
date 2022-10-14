@@ -20,5 +20,5 @@
 - [x] SSH support
 - [x] SSH key support
 - [ ] Run specific branch
-- [ ] Fix permission issues for repo objects
+- [x] Fix permission issues for repo objects
 - [x] Create AMW_NPROC
