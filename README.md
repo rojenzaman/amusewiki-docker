@@ -20,7 +20,7 @@ https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=
 | `CONTAINER_IS_BEHIND_HTTPS_TRAEFIK` | No | Setting this to `true` will enable HTTPS Traefik support
 | `AMW_WORKERS` | No | Specify number of process set by script/init-fcgi.pl
 | `AMW_NPROC` | No | Specify number of perl-fcgi process
-| `CHANGE_PASSWORD_BEFORE_RUN` | No | Setting thist to `true` will enable password changing
+| `CHANGE_PASSWORD_BEFORE_RUN` | No | Setting this to `true` will enable password changing
 | `AMW_USERNAME` | No | Set username
 | `AMW_PASSWORD` | No | Set password
 | `HOST_SSH_PUBLIC_KEY` | No | Authorize host ssh public key
