@@ -51,8 +51,7 @@ client_max_body_size 8m; \
 	sed -i 's/# server_names_hash_bucket_size 64;/server_names_hash_bucket_size 128;/g' /etc/nginx/nginx.conf
 
 # give sudo to amusewiki
-RUN usermod -aG sudo amusewiki; \
-	echo 'amusewiki ALL=NOPASSWD: /bin/mv,/usr/bin/unlink,/bin/rm' >> /etc/sudoers.d/amusewiki-temp; \
+RUN echo 'amusewiki ALL=NOPASSWD: /bin/mv,/usr/bin/unlink,/bin/rm' >> /etc/sudoers.d/amusewiki-temp; \
 	echo 'amusewiki ALL=NOPASSWD: /bin/chown,/usr/sbin/nginx,/usr/sbin/amusewiki,/usr/bin/systemctl,/usr/bin/apt' >> /etc/sudoers.d/amusewiki; \
 	chmod 0440 /etc/sudoers.d/amusewiki-temp /etc/sudoers.d/amusewiki
 

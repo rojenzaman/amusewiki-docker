@@ -47,9 +47,8 @@ client_max_body_size 8m; \
 
 # create amusewiki user and give sudo
 RUN adduser --home /var/lib/amusewiki amusewiki --disabled-password --gecos ""; \
-	usermod -aG sudo amusewiki; \
-	echo 'sudo ALL=NOPASSWD: /bin/mv,/usr/bin/unlink,/bin/rm,/bin/sh,/bin/cp,/bin/chmod,/bin/sed' >> /etc/sudoers.d/amusewiki-temp; \
-	echo 'sudo ALL=NOPASSWD: /bin/chown,/usr/sbin/nginx,/usr/sbin/amusewiki,/usr/bin/systemctl,/usr/bin/apt' >> /etc/sudoers.d/amusewiki; \
+	echo 'amusewiki ALL=NOPASSWD: /bin/mv,/usr/bin/unlink,/bin/rm,/bin/sh,/bin/cp,/bin/chmod,/bin/sed' >> /etc/sudoers.d/amusewiki-temp; \
+	echo 'amusewiki ALL=NOPASSWD: /bin/chown,/usr/sbin/nginx,/usr/sbin/amusewiki,/usr/bin/systemctl,/usr/bin/apt' >> /etc/sudoers.d/amusewiki; \
 	chmod 0440 /etc/sudoers.d/amusewiki-temp /etc/sudoers.d/amusewiki
 
 # quality of life
