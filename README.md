@@ -12,6 +12,22 @@ https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=
  - [`texlive-base`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-base/Dockerfile)
  - [`texlive-full`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-full/Dockerfile)
 
+### Environment Variables
+
+| Name | Required | Description
+|---|---|---
+| `POST_DOMAIN` | No | Change domain
+| `CONTAINER_IS_BEHIND_HTTPS_TRAEFIK` | No | Setting this to `true` will enable HTTPS Traefik support
+| `AMW_WORKERS` | No | Specify number of process set by script/init-fcgi.pl
+| `AMW_NPROC` | No | Specify number of perl-fcgi process
+| `CHANGE_PASSWORD_BEFORE_RUN` | No | Setting thist to `true` will enable password changing
+| `AMW_USERNAME` | No | Set username
+| `AMW_PASSWORD` | No | Set password
+| `HOST_SSH_PUBLIC_KEY` | No | Authorize host ssh public key
+| `GENERATE_NEW_SSH_KEY` | No | Setting thist to `true` will crate new ssh key
+| `NGX_PREFIX` | No | `amusewikidebian` or `amusewiki`
+| `AMUSEWIKI_SWITCH_BRANCH` | No | Switch to given branch before run (*texlive-base*, *texlive-full* only)
+
 ### Be careful!
 
 This repo use SQLite as a database. Currently MySQL and PostgreSQL are not supported. See: [TODO](https://github.com/rojenzaman/amusewiki-docker/blob/master/TODO.md)
