@@ -47,10 +47,8 @@ client_max_body_size 8m; \
 
 # create amusewiki user and give sudo
 RUN adduser --home /var/lib/amusewiki amusewiki --disabled-password --gecos ""; \
-	usermod -aG sudo amusewiki; \
-	#echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
-	echo 'ALL ALL=NOPASSWD: /bin/mv,/usr/bin/unlink,/bin/rm,/bin/sh,/bin/cp,/bin/chmod' >> /etc/sudoers.d/amusewiki-temp; \
-	echo 'ALL ALL=NOPASSWD: /bin/chown,/usr/sbin/nginx,/usr/sbin/amusewiki,/usr/bin/systemctl,/usr/bin/apt' >> /etc/sudoers.d/amusewiki; \
+	echo 'sudo ALL=NOPASSWD: /bin/mv,/usr/bin/unlink,/bin/rm,/bin/sh,/bin/cp,/bin/chmod,/bin/sed' >> /etc/sudoers.d/amusewiki-temp; \
+	echo 'sudo ALL=NOPASSWD: /bin/chown,/usr/sbin/nginx,/usr/sbin/amusewiki,/usr/bin/systemctl,/usr/bin/apt' >> /etc/sudoers.d/amusewiki; \
 	chmod 0440 /etc/sudoers.d/amusewiki-temp /etc/sudoers.d/amusewiki
 
 # quality of life
@@ -71,7 +69,6 @@ RUN mv /var/lib/amusewiki /tmp; \
 USER amusewiki
 WORKDIR /var/lib/amusewiki
 ARG AMUSE_BUILD_DOMAIN
-ARG AMW_WORKERS
 ARG AMW_USERNAME
 ARG AMW_PASSWORD
 RUN ./script/install.sh || true; \
@@ -88,8 +85,13 @@ RUN ./script/install.sh || true; \
 	carton exec script/amusewiki-reset-password ${AMW_USERNAME} ${AMW_PASSWORD}
 
 # set ENTRYPOINT
+ARG AMW_WORKERS
+ARG AMW_NPROC
+ENV AMW_WORKERS=${AMW_WORKERS:-5}
+ENV AMW_NPROC=${AMW_NPROC:-5}
 RUN sudo systemctl enable amusewiki-web amusewiki-jobber nginx; \
-	sudo mv /var/lib/amusewiki/script/amusewiki-jobber /var/lib/amusewiki/script/amusewiki-jobber-exec
+	sudo mv /var/lib/amusewiki/script/amusewiki-jobber /var/lib/amusewiki/script/amusewiki-jobber-exec; \
+	sudo sed -i 's/--nproc 5/--nproc ${AMW_NPROC}/g' /etc/systemd/system/amusewiki-web.service
 COPY lib/amusewiki-jobber /var/lib/amusewiki/script
 COPY lib/post-domain.sh /usr/bin
 COPY lib/post-nginx.sh /usr/bin
@@ -106,7 +108,6 @@ RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\
 	# generate ssh key \
 	ssh-keygen -q -t rsa -N '' -f /var/lib/amusewiki/.ssh/id_rsa <<<y >/dev/null 2>&1
 ENV PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'
-ENV AMW_WORKERS=${AMW_WORKERS}
 ENV AMW_USERNAME=${AMW_USERNAME}
 ENV AMW_PASSWORD=${AMW_PASSWORD}
 COPY lib/backup_amw.sh /usr/bin

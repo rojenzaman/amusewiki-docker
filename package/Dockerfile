@@ -51,10 +51,8 @@ client_max_body_size 8m; \
 	sed -i 's/# server_names_hash_bucket_size 64;/server_names_hash_bucket_size 128;/g' /etc/nginx/nginx.conf
 
 # give sudo to amusewiki
-RUN usermod -aG sudo amusewiki; \
-	#echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
-	echo 'ALL ALL=NOPASSWD: /bin/mv,/usr/bin/unlink,/bin/rm' >> /etc/sudoers.d/amusewiki-temp; \
-	echo 'ALL ALL=NOPASSWD: /bin/chown,/usr/sbin/nginx,/usr/sbin/amusewiki,/usr/bin/systemctl,/usr/bin/apt' >> /etc/sudoers.d/amusewiki; \
+RUN echo 'amusewiki ALL=NOPASSWD: /bin/mv,/usr/bin/unlink,/bin/rm' >> /etc/sudoers.d/amusewiki-temp; \
+	echo 'amusewiki ALL=NOPASSWD: /bin/chown,/usr/sbin/nginx,/usr/sbin/amusewiki,/usr/bin/systemctl,/usr/bin/apt' >> /etc/sudoers.d/amusewiki; \
 	chmod 0440 /etc/sudoers.d/amusewiki-temp /etc/sudoers.d/amusewiki
 
 # install nginx configuration
@@ -62,8 +60,13 @@ RUN cat /tmp/nginx-amusewiki-*/amusewikidebian_include > /etc/nginx/amusewikideb
 	cat /tmp/nginx-amusewiki-*/amusewikidebian > /etc/nginx/sites-enabled/amusewikidebian
 
 # set ENTRYPOINT
+ARG AMW_WORKERS
+ARG AMW_NPROC
+ENV AMW_WORKERS=${AMW_WORKERS:-5}
+ENV AMW_NPROC=${AMW_NPROC:-5}
 RUN systemctl enable amusewiki-web amusewiki-jobber nginx; \
-	mv /usr/bin/amusewiki-jobber /usr/bin/amusewiki-jobber-exec
+	mv /usr/bin/amusewiki-jobber /usr/bin/amusewiki-jobber-exec; \
+	sed -i 's/--nproc 5/--nproc ${AMW_NPROC}/g' /lib/systemd/system/amusewiki-web.service
 COPY lib/amusewiki-jobber /usr/bin
 COPY lib/post-domain.sh /usr/bin
 COPY lib/post-nginx.sh /usr/bin
@@ -74,7 +77,6 @@ CMD ["/usr/bin/systemctl"]
 # quality of life
 USER amusewiki
 WORKDIR /var/lib/amusewiki
-ARG AMW_WORKERS
 ARG AMW_USERNAME
 ARG AMW_PASSWORD
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'" >> /var/lib/amusewiki/.bashrc; \
@@ -86,7 +88,6 @@ RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\
 	# generate ssh key \
 	ssh-keygen -q -t rsa -N '' -f /var/lib/amusewiki/.ssh/id_rsa <<<y >/dev/null 2>&1
 ENV PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'
-ENV AMW_WORKERS=${AMW_WORKERS}
 ENV AMW_USERNAME=${AMW_USERNAME}
 ENV AMW_PASSWORD=${AMW_PASSWORD}
 COPY lib/backup_amw.sh /usr/bin

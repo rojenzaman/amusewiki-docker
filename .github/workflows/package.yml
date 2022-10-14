@@ -25,7 +25,7 @@ jobs:
       run: docker build package/ --file package/Dockerfile.getversion --tag amw_version
 
     - name: Build the Docker image
-      run: docker build package/ --file package/Dockerfile --tag rojen/amusewiki:latest --tag rojen/amusewiki:package --tag rojen/amusewiki:package-$(docker run amw_version) --build-arg AMW_WORKERS=5 --build-arg AMW_USERNAME=amusewiki --build-arg AMW_PASSWORD=changeme
+      run: docker build package/ --file package/Dockerfile --tag rojen/amusewiki:latest --tag rojen/amusewiki:package --tag rojen/amusewiki:package-$(docker run amw_version) --build-arg AMW_WORKERS=5 --build-arg AMW_NPROC=5 --build-arg AMW_USERNAME=amusewiki --build-arg AMW_PASSWORD=changeme
 
     - name: Docker Push
       run: docker push rojen/amusewiki:package; docker push rojen/amusewiki:latest; docker push rojen/amusewiki:package-$(docker run amw_version)

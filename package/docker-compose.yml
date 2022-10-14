@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
       args:
         AMW_WORKERS: 5
+        AMW_NPROC: 5
         AMW_USERNAME: amusewiki
         AMW_PASSWORD: changeme
     volumes:
