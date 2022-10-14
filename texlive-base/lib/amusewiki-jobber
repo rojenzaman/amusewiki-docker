@@ -16,6 +16,7 @@ sudo chmod 644 /var/lib/amusewiki/repo/*/uploads/* &
 post-domain.sh &>/dev/null
 post-nginx.sh &>/dev/null
 post-password.sh &>/dev/null &
+post-branch.sh &>/dev/null
 sudo nginx &>/dev/null
 carton exec script/amusewiki-upgrade-db &>/dev/null &
 

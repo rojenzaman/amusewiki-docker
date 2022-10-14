@@ -19,6 +19,6 @@
 - [ ] Change domain by ID
 - [x] SSH support
 - [x] SSH key support
-- [ ] Run specific branch
+- [x] Run specific branch
 - [x] Fix permission issues for repo objects
 - [x] Create AMW_NPROC

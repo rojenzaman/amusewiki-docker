@@ -94,6 +94,7 @@ COPY lib/post-domain.sh /usr/bin
 COPY lib/post-nginx.sh /usr/bin
 COPY lib/post-password.sh /usr/bin
 COPY lib/post-ssh.sh /usr/bin
+COPY lib/post-branch.sh /usr/bin
 COPY lib/amusewiki-jobber.service /etc/systemd/system
 CMD ["/usr/bin/systemctl"]
 
