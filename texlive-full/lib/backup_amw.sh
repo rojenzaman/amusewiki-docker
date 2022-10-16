@@ -21,6 +21,8 @@ rsync -radhzv --delete /etc/nginx/sites-enabled/amusewikidebian ${BACKUP_BASE}/a
 
 rsync ${RSYNC_REPO_ARG} -radhzv --delete /var/lib/amusewiki/repo ${BACKUP_BASE}/amusewiki/
 
+rsync -radhzv --delete /var/lib/amusewiki/staging ${BACKUP_BASE}/amusewiki/
+
 rsync -radhzv --delete /var/lib/amusewiki/thumbnails ${BACKUP_BASE}/amusewiki/
 
 tar -cvf ${BACKUP_BASE}/amusewiki.tar -C ${BACKUP_BASE} amusewiki/

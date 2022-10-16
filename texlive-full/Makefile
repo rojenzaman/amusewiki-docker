@@ -7,8 +7,8 @@ include $(CONFIG)
 
 clean:
 	rm -rf amusewiki
-	mkdir -p amusewiki/repo amusewiki/db amusewiki/thumbnails amusewiki/nginx
-	touch amusewiki/repo/.gitkeep amusewiki/db/.gitkeep amusewiki/thumbnails/.gitkeep amusewiki/nginx/.gitkeep
+	mkdir -p amusewiki/repo amusewiki/staging amusewiki/db amusewiki/thumbnails amusewiki/nginx
+	touch amusewiki/repo/.gitkeep amusewiki/staging/.gitkeep amusewiki/db/.gitkeep amusewiki/thumbnails/.gitkeep amusewiki/nginx/.gitkeep
 
 clean-all:
 	make clean
@@ -31,6 +31,7 @@ backup-external:
 	rsync $(AMUSEWIKI_RSYNC_ARG) -radhzv --delete $(AMUSEWIKI_HOST):$(AMUSEWIKI_HOST_DIR)/dbic.yaml lib/containerless-backup/amusewiki/db/
 	rsync $(AMUSEWIKI_RSYNC_ARG) -radhzv --delete $(AMUSEWIKI_HOST):$(AMUSEWIKI_HOST_DB) lib/containerless-backup/amusewiki/db/
 	rsync $(AMUSEWIKI_RSYNC_ARG) -radhzv --delete $(AMUSEWIKI_HOST):$(AMUSEWIKI_HOST_DIR)/repo lib/containerless-backup/amusewiki/
+	rsync $(AMUSEWIKI_RSYNC_ARG) -radhzv --delete $(AMUSEWIKI_HOST):$(AMUSEWIKI_HOST_DIR)/staging lib/containerless-backup/amusewiki/
 	rsync $(AMUSEWIKI_RSYNC_ARG) -radhzv --delete $(AMUSEWIKI_HOST):$(AMUSEWIKI_HOST_DIR)/thumbnails lib/containerless-backup/amusewiki/
 	rsync $(AMUSEWIKI_RSYNC_ARG) -radhzv --delete $(AMUSEWIKI_HOST):$(AMUSEWIKI_NGX_PATH) lib/containerless-backup/amusewiki/nginx/
 	-$(POST_CONTAINERLESS_BACKUP)

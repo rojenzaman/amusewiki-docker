@@ -15,6 +15,7 @@ services:
     volumes:
       - './amusewiki/repo:/var/lib/amusewiki/repo'
       - './amusewiki/thumbnails:/var/lib/amusewiki/thumbnails'
+      - './amusewiki/staging:/var/lib/amusewiki/staging'
       - './amusewiki/db/sqlite.db:/var/lib/amusewiki/sqlite.db'
       - './amusewiki/db/dbic.yaml:/var/lib/amusewiki/dbic.yaml'
       - './amusewiki/nginx:/etc/nginx/sites-enabled'
