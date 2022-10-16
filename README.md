@@ -27,6 +27,7 @@ https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=
 | `GENERATE_NEW_SSH_KEY` | No | Setting thist to `true` will crate new ssh key
 | `NGX_PREFIX` | No | `amusewikidebian` or `amusewiki`
 | `AMUSEWIKI_SWITCH_BRANCH` | No | Switch to given branch before run (*texlive-base*, *texlive-full* only)
+| `CREATE_MISSING_STAGING_FILES` | No | Setting this to `true` will create missing staging files
 
 ### Be careful!
 

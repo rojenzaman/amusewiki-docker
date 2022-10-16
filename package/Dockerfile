@@ -72,6 +72,7 @@ COPY lib/post-domain.sh /usr/bin
 COPY lib/post-nginx.sh /usr/bin
 COPY lib/post-password.sh /usr/bin
 COPY lib/post-ssh.sh /usr/bin
+COPY lib/create-missing-stating-files.sh /usr/bin
 CMD ["/usr/bin/systemctl"]
 
 # quality of life
