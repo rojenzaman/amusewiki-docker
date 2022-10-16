@@ -6,6 +6,7 @@ post-ssh.sh &>/dev/null &
 sudo chown -R amusewiki:amusewiki \
 	/var/lib/amusewiki/repo \
 	/var/lib/amusewiki/thumbnails \
+	/var/lib/amusewiki/staging \
 	/var/lib/amusewiki/*.yaml \
 	/var/lib/amusewiki/*.db \
 	/var/lib/dbconfig-common/sqlite3/amusewiki \
