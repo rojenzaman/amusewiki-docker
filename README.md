@@ -6,6 +6,16 @@
 https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=layers
 -->
 
+### Quickly deploy a demo on [Play With Docker](https://labs.play-with-docker.com/?stack=https://gist.github.com/rojenzaman/c6bd978a3dca9a90661baba96186c46d/raw/05683239655b2f46d462c117f9ed8c00cc34246c/stack.yml&stack_name=amusewiki)
+
+[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://gist.github.com/rojenzaman/c6bd978a3dca9a90661baba96186c46d/raw/05683239655b2f46d462c117f9ed8c00cc34246c/stack.yml&stack_name=amusewiki)
+
+Click the button above then click **start**, wait for it to deploy. Then click **80**.
+
+ - The default username is: `amusewiki`
+ - The default password is: `changeme`
+
+
 ### Tags
 
  - [`package, latest, package-2.551, package-2.560`](https://github.com/rojenzaman/amusewiki-docker/blob/master/package/Dockerfile)
@@ -16,7 +26,7 @@ https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=
 
 | Name | Required | Description
 |---|---|---
-| `POST_DOMAIN` | No | Change domain
+| `POST_DOMAIN` | No | Change initial domain
 | `CONTAINER_IS_BEHIND_HTTPS_TRAEFIK` | No | Setting this to `true` will enable HTTPS Traefik support
 | `AMW_WORKERS` | No | Specify number of process set by script/init-fcgi.pl
 | `AMW_NPROC` | No | Specify number of perl-fcgi process
@@ -29,18 +39,19 @@ https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=
 | `AMUSEWIKI_SWITCH_BRANCH` | No | Switch to given branch before run (*texlive-base*, *texlive-full* only)
 | `CREATE_MISSING_STAGING_FILES` | No | Setting this to `true` will create missing staging files
 
+### Volumes
+
+ - `/var/lib/amusewiki/repo`  **git**
+ - `/var/lib/amusewiki/thumbnails`  **thumb**
+ - `/var/lib/amusewiki/staging` **staging**
+ - Depending on the database path:
+   - `/var/lib/dbconfig-common/sqlite3/amusewiki` **db** (for debian package installation)
+   - `/var/lib/amusewiki/sqlite.db` **db** and `/var/lib/amusewiki/dbic.yaml`  **db-conf** (for git installation)
+ - `/etc/nginx/sites-enabled` **web**
+
 ### Be careful!
 
 This repo use SQLite as a database. Currently MySQL and PostgreSQL are not supported. See: [TODO](https://github.com/rojenzaman/amusewiki-docker/blob/master/TODO.md)
-
-### Quickly deploy a demo on [Play With Docker](https://labs.play-with-docker.com/?stack=https://gist.github.com/rojenzaman/c6bd978a3dca9a90661baba96186c46d/raw/05683239655b2f46d462c117f9ed8c00cc34246c/stack.yml&stack_name=amusewiki)
-
-[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://gist.github.com/rojenzaman/c6bd978a3dca9a90661baba96186c46d/raw/05683239655b2f46d462c117f9ed8c00cc34246c/stack.yml&stack_name=amusewiki)
-
-Click the button above then click **start**, wait for it to deploy. Then click **80**.
-
- - The default username is: `amusewiki`
- - The default password is: `changeme`
 
 ### How to use?
 
