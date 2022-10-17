@@ -53,6 +53,8 @@ Click the button above then click **start**, wait for it to deploy. Then click *
 
 This repo use SQLite as a database. Currently MySQL and PostgreSQL are not supported. See: [TODO](https://github.com/rojenzaman/amusewiki-docker/blob/master/TODO.md)
 
+This image is production ready! Beleive it or not.
+
 ### How to use?
 
 Read the usage notes and check the example **docker-compose.yml** files: [amusewiki-docker/wiki](https://github.com/rojenzaman/amusewiki-docker/wiki)
