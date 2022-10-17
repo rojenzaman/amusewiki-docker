@@ -18,11 +18,11 @@ RUN apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
         && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.utf8
 
-# install amusewiki tools and fonts
+# install amusewiki fonts
 RUN wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -; \
         echo 'deb http://packages.amusewiki.org/debian bullseye main' > /etc/apt/sources.list.d/amusewiki.list; \
         apt-get update; \
-        apt-get install -y libtext-amuse-perl libtext-amuse-preprocessor-perl libtext-amuse-compile-perl amusewiki-extra-fonts
+        apt-get install -y amusewiki-extra-fonts
 
 # install fake systemd
 RUN git clone https://github.com/gdraheim/docker-systemctl-replacement /tmp/docker-systemctl-replacement; \
