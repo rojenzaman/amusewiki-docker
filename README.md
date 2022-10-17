@@ -36,7 +36,7 @@ Click the button above then click **start**, wait for it to deploy. Then click *
 | `HOST_SSH_PUBLIC_KEY` | No | Authorize host ssh public key
 | `GENERATE_NEW_SSH_KEY` | No | Setting thist to `true` will crate new ssh key
 | `NGX_PREFIX` | No | `amusewikidebian` or `amusewiki`
-| `AMUSEWIKI_SWITCH_BRANCH` | No | Switch to given branch before run (*texlive-base*, *texlive-full* only)
+| `AMUSEWIKI_SWITCH_BRANCH` | No | Switch to given branch before run (*texlive-minimal*, *texlive-base*, *texlive-full*)
 | `CREATE_MISSING_STAGING_FILES` | No | Setting this to `true` will create missing staging files
 
 ### Volumes
@@ -45,8 +45,8 @@ Click the button above then click **start**, wait for it to deploy. Then click *
  - `/var/lib/amusewiki/thumbnails`  **thumb**
  - `/var/lib/amusewiki/staging` **staging**
  - Depending on the database path:
-   - `/var/lib/dbconfig-common/sqlite3/amusewiki` **db** (for debian package installation)
-   - `/var/lib/amusewiki/sqlite.db` **db** and `/var/lib/amusewiki/dbic.yaml`  **db-conf** (for git installation)
+   - Mount as volume`/var/lib/dbconfig-common/sqlite3/amusewiki` **db** (*package*)
+   - Mount as persistent volume: `/var/lib/amusewiki/sqlite.db` **db** and `/var/lib/amusewiki/dbic.yaml`  **db-conf** (*texlive-minimal*, *texlive-base*, *texlive-full*)
  - `/etc/nginx/sites-enabled` **web**
 
 ### Be careful!
