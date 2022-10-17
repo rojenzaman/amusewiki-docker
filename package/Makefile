@@ -26,6 +26,9 @@ build:
 backup:
 	tar -cvf lib/amusewiki.tar amusewiki/
 
+backup-exclude-uploads:
+	tar --exclude="amusewiki/repo/*/uploads" -cvf lib/amusewiki.tar amusewiki/
+
 backup-external:
 	mkdir -p lib/containerless-backup/amusewiki/db
 	mkdir -p lib/containerless-backup/amusewiki/nginx
@@ -45,8 +48,11 @@ help:
 	@lib/makehelp.sh
 
 restore:
-	make clean
 	tar -xvf lib/amusewiki.tar
+
+restore-with-clean:
+	make clean
+	make restore
 
 rootless-podman:
 	sed -i "s/80/$(PODMAN_HTTP_PORT)/g" amusewiki/nginx/amusewiki*
