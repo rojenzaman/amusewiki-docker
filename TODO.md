@@ -22,3 +22,4 @@
 - [x] Fix permission issues for repo objects
 - [x] Create AMW_NPROC
 - [x] texlive-minimal for PWD
+- [ ] Fix symlinks for `/var/lib/dbconfig-common/sqlite3/amusewiki`
