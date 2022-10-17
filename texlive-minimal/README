@@ -1,0 +1,5 @@
+texlive-minimal
+---
+Used: 
+ - amusewiki-texlive | Minimal TeX Live installation for Amusewiki
+ - libtext-amuse-perl libtext-amuse-preprocessor-perl libtext-amuse-compile-perl | Amusewiki tools

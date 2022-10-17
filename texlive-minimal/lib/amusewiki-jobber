@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ ! -f /etc/nginx/sites-enabled/${NGX_PREFIX} ]; then if [ -f /etc/nginx/amusewikidebian_include ]; then export NGX_PREFIX=amusewikidebian; fi; if [ -f /etc/nginx/amusewiki_include ]; then export NGX_PREFIX=amusewiki; fi; fi
+sudo nginx -s stop &>/dev/null
+post-ssh.sh &>/dev/null &
+sudo chown -R amusewiki:amusewiki \
+	/var/lib/amusewiki/repo \
+	/var/lib/amusewiki/thumbnails \
+	/var/lib/amusewiki/staging \
+	/var/lib/amusewiki/*.yaml \
+	/var/lib/amusewiki/*.db \
+	/var/lib/dbconfig-common/sqlite3/amusewiki \
+	/var/lib/amusewiki/.ssh \
+	&>/dev/null &
+sudo chmod 755 /var/lib/amusewiki/repo/*/uploads &
+sudo chmod 644 /var/lib/amusewiki/repo/*/uploads/* &
+post-domain.sh &>/dev/null
+post-nginx.sh &>/dev/null
+post-password.sh &>/dev/null &
+post-branch.sh &>/dev/null
+create-missing-stating-files.sh &>/dev/null &
+sudo nginx &>/dev/null
+carton exec script/amusewiki-upgrade-db &>/dev/null &
+
+/usr/bin/carton exec perl -I/var/lib/amusewiki/lib /var/lib/amusewiki/script/amusewiki-jobber-exec

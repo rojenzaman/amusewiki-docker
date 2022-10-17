@@ -1,0 +1,14 @@
+[Unit]
+Description=Amusewiki jobber
+After=nss-user-lookup.target
+
+[Service]
+WorkingDirectory=/var/lib/amusewiki
+User=amusewiki
+Group=amusewiki
+Environment="PATH=/opt/amusewiki-texlive/current/bin/arch:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ExecStart=/var/lib/amusewiki/script/amusewiki-jobber
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

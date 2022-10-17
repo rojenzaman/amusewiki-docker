@@ -1,0 +1,28 @@
+name: rojen/amusewiki:texlive-minimal
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Docker Login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+    - name: Build the Docker image
+      run: docker build texlive-minimal/ --file texlive-minimal/Dockerfile --tag rojen/amusewiki:texlive-minimal --build-arg AMUSE_BUILD_DOMAIN=amusewiki.localdomain --build-arg AMUSE_CLONE_COMMAND='git clone https://github.com/melmothx/amusewiki.git /var/lib/amusewiki' --build-arg AMW_WORKERS=5 --build-arg AMW_NPROC=5 --build-arg AMW_USERNAME=amusewiki --build-arg AMW_PASSWORD=changeme
+
+    - name: Docker Push
+      run: docker push rojen/amusewiki:texlive-minimal

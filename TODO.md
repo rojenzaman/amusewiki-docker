@@ -8,17 +8,17 @@
 - [ ] Support for MySQL, PostgreSQL
 - [ ] Incremental backup
 - [x] Public versioning of the package tag.
-- [ ] Local versioning of the package tag.
 - [x] Update remote tar
 - [x] Support "Try in PWD"
 - [x] Set default password to all images
 - [x] Auto open port for PWD
 - [ ] Empty initial site
 - [ ] Hidden service for amusewiki
-- [ ] amusewiki-texlive/unknown 20220322-1 amd64 | Minimal TeX Live 2021 installation for Amusewiki (test it for texlive-base and texlive-full)
+- [x] amusewiki-texlive/unknown 20220322-1 amd64 | Minimal TeX Live 2021 installation for Amusewiki (test it for texlive-base and texlive-full)
 - [ ] Change domain by ID
 - [x] SSH support
 - [x] SSH key support
 - [x] Run specific branch
 - [x] Fix permission issues for repo objects
 - [x] Create AMW_NPROC
+- [ ] texlive-minimal for PWD
