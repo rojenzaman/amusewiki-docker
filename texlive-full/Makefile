@@ -7,6 +7,7 @@ include $(CONFIG)
 
 clean:
 	rm -rf amusewiki
+	rm -rf *.log
 	mkdir -p amusewiki/repo amusewiki/staging amusewiki/db amusewiki/thumbnails amusewiki/nginx
 	touch amusewiki/repo/.gitkeep amusewiki/staging/.gitkeep amusewiki/db/.gitkeep amusewiki/thumbnails/.gitkeep amusewiki/nginx/.gitkeep
 
