@@ -6,7 +6,7 @@
 https://badgen.net/docker/layers/rojen/amusewiki/latest/amd64?icon=docker&label=layers
 -->
 
-### Quickly deploy a demo on [Play With Docker](_testing/pwd#readme)
+### Quickly deploy a demo on [Play With Docker](_testing/pwd)
 
 [![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://gist.github.com/rojenzaman/c6bd978a3dca9a90661baba96186c46d/raw/05683239655b2f46d462c117f9ed8c00cc34246c/stack.yml&stack_name=amusewiki)
 
@@ -14,7 +14,6 @@ Click the button above then click **start**, wait for it to deploy. Then click *
 
  - The default username is: `amusewiki`
  - The default password is: `changeme`
-
 
 ### Tags
 
