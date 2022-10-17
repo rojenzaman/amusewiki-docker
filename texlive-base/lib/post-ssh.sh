@@ -18,7 +18,7 @@ if [ -z "${HOST_SSH_PUBLIC_KEY}" ]; then
 	exit 0
 else
 	# write ssh key
-	echo "${HOST_SSH_PUBLIC_KEY}" > /var/lib/amusewiki/.ssh/authorized_keys
+	echo "${HOST_SSH_PUBLIC_KEY}" | sed 's/^"\(.*\)"$/\1/' > /var/lib/amusewiki/.ssh/authorized_keys
 	# enable and start sshd service
 	sudo systemctl enable sshd
 	sudo systemctl start sshd
