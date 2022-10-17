@@ -5,7 +5,7 @@
 
 Click the button below then click **start**, wait for it to deploy. Then click **80**.
 
-[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://raw.githubusercontent.com/rojenzaman/amusewiki-docker/master/_testing/pwd/package.yml&stack_name=amusewiki)
+[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/rojenzaman/amusewiki-docker/master/_testing/pwd/package.yml&stack_name=amusewiki)
 
  - The default username is: `amusewiki`
  - The default password is: `changeme`
@@ -14,7 +14,7 @@ Click the button below then click **start**, wait for it to deploy. Then click *
 
 Click the button below then click **start**, wait for it to deploy. Then click **80**.
 
-[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://raw.githubusercontent.com/rojenzaman/amusewiki-docker/master/_testing/pwd/texlive-minimal.yml&stack_name=amusewiki)
+[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/rojenzaman/amusewiki-docker/master/_testing/pwd/texlive-minimal.yml&stack_name=amusewiki)
 
  - The default username is: `amusewiki`
  - The default password is: `changeme`
