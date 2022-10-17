@@ -55,7 +55,7 @@ This repo use SQLite as a database. Currently MySQL and PostgreSQL are not suppo
 
 ### How to use?
 
-Read the usage notes: [amusewiki-docker/wiki](https://github.com/rojenzaman/amusewiki-docker/wiki)
+Read the usage notes and check the example **docker-compose.yml** files: [amusewiki-docker/wiki](https://github.com/rojenzaman/amusewiki-docker/wiki)
 
 ### Related Projects
 
