@@ -21,4 +21,4 @@
 - [x] Run specific branch
 - [x] Fix permission issues for repo objects
 - [x] Create AMW_NPROC
-- [ ] texlive-minimal for PWD
+- [x] texlive-minimal for PWD

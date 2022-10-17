@@ -11,6 +11,10 @@ fi
 # set variable
 INITIAL_DOMAIN_ID="1"
 INITIAL_DOMAIN="$(sqlite3 "${DB}" "SELECT canonical FROM site WHERE rowid = ${INITIAL_DOMAIN_ID};")"
+if [[ ${CONTAINER_IS_IN_PWD} == true ]]; then
+	PWD_PROXY_HOST=$(curl -s https://labs.play-with-docker.com/sessions/${SESSION_ID} | jq -r .instances[].proxy_host | head -1)
+	POST_DOMAIN=${PWD_PROXY_HOST}-${PWD_PORT}.direct.${PWD_HOST_FQDN}
+fi
 
 # check variable and status
 # terminate if domain is not set
