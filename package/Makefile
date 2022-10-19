@@ -32,8 +32,7 @@ backup-exclude-uploads:
 backup-external:
 	mkdir -p lib/containerless-backup/amusewiki/db
 	mkdir -p lib/containerless-backup/amusewiki/nginx
-	rsync $(AMUSEWIKI_RSYNC_ARG) -radhzv --delete $(AMUSEWIKI_HOST):$(AMUSEWIKI_HOST_DIR)/dbic.yaml lib/containerless-backup/amusewiki/db/
-	rsync $(AMUSEWIKI_RSYNC_ARG) -radhzv --delete $(AMUSEWIKI_HOST):$(AMUSEWIKI_HOST_DB) lib/containerless-backup/amusewiki/db/
+	rsync $(AMUSEWIKI_RSYNC_ARG) -radhzv --delete $(AMUSEWIKI_HOST):$(AMUSEWIKI_HOST_DB) lib/containerless-backup/amusewiki/db/amusewiki
 	rsync $(AMUSEWIKI_RSYNC_ARG) -radhzv --delete $(AMUSEWIKI_HOST):$(AMUSEWIKI_HOST_DIR)/repo lib/containerless-backup/amusewiki/
 	rsync $(AMUSEWIKI_RSYNC_ARG) -radhzv --delete $(AMUSEWIKI_HOST):$(AMUSEWIKI_HOST_DIR)/staging lib/containerless-backup/amusewiki/
 	rsync $(AMUSEWIKI_RSYNC_ARG) -radhzv --delete $(AMUSEWIKI_HOST):$(AMUSEWIKI_HOST_DIR)/thumbnails lib/containerless-backup/amusewiki/
