@@ -54,6 +54,35 @@ Click the button above then click **start**, wait for it to deploy. Then click *
  - `/var/lib/dbconfig-common/sqlite3/amusewiki` **db**
  - `/etc/nginx/sites-enabled` **web**
 
+### Quick docker-compose.yml
+
+```yaml
+version: '3.4'
+services:
+  app:
+    image: rojen/amusewiki:package
+    ports:
+      -	'80:80'
+      -	'443:443'
+    environment:
+      - POST_DOMAIN=localhost
+      - CHANGE_PASSWORD_BEFORE_RUN=true
+      - AMW_USERNAME=amusewiki
+      - AMW_PASSWORD=changeme
+    volumes:
+      - repo:/var/lib/amusewiki/repo
+      - thumb:/var/lib/amusewiki/thumbnails
+      - staging:/var/lib/amusewiki/staging
+      - db:/var/lib/dbconfig-common/sqlite3/amusewiki
+      - web:/etc/nginx/sites-enabled
+volumes:
+  repo:
+  thumb:
+  staging:
+  db:
+  web:
+```
+
 ### Be careful!
 
 This repo use SQLite as a database. Currently MySQL and PostgreSQL are not supported. See: [TODO](https://github.com/rojenzaman/amusewiki-docker/blob/master/TODO.md)
