@@ -23,10 +23,10 @@ clean-rootless-podman:
 build:
 	$(OCI) build -t rojen/amusewiki:$(TAG) $(BUILD_ARGS) -f Dockerfile .
 
-backup:
+backup-include-uploads:
 	tar -cvf lib/amusewiki.tar amusewiki/
 
-backup-exclude-uploads:
+backup:
 	tar --exclude="amusewiki/repo/*/uploads" -cvf lib/amusewiki.tar amusewiki/
 
 backup-external:
