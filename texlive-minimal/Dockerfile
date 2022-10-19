@@ -24,7 +24,6 @@ RUN git clone https://github.com/gdraheim/docker-systemctl-replacement /tmp/dock
 	make; \
 	cp files/docker/systemctl3.py /usr/bin/systemctl; \
 	ln -sf /usr/bin/systemctl /bin/systemctl || true
-COPY lib/bash_completion/systemctl /etc/bash_completion.d
 
 # install amusewiki tools, texlive and fonts
 RUN wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -; \
@@ -73,7 +72,7 @@ ENV PATH="${PATH}:/opt/amusewiki-texlive/current/bin/arch"
 # set amw sqlite path and its script before run install.sh
 ARG AMW_SQLITE_PATH
 ENV AMW_SQLITE_PATH=${AMW_SQLITE_PATH:-/var/lib/dbconfig-common/sqlite3/amusewiki/amusewiki}
-COPY lib/amw-sqlite-path.sh /usr/bin
+COPY lib/bin/amw-sqlite-path.sh /usr/bin
 # run installation script to complete the installation 
 RUN ./script/install.sh || true; \
 	# create db directory \
@@ -101,16 +100,14 @@ ENV AMW_NPROC=${AMW_NPROC:-5}
 RUN sudo systemctl enable amusewiki-web amusewiki-jobber nginx; \
 	sudo mv /var/lib/amusewiki/script/amusewiki-jobber /var/lib/amusewiki/script/amusewiki-jobber-exec; \
 	sudo sed -i 's/--nproc 5/--nproc ${AMW_NPROC}/g' /etc/systemd/system/amusewiki-web.service
-COPY lib/amusewiki-jobber /var/lib/amusewiki/script
-COPY lib/post-domain.sh /usr/bin
-COPY lib/post-nginx.sh /usr/bin
-COPY lib/post-password.sh /usr/bin
-COPY lib/post-ssh.sh /usr/bin
-COPY lib/post-branch.sh /usr/bin
-COPY lib/create-missing-stating-files.sh /usr/bin
-COPY lib/amusewiki-jobber.service /etc/systemd/system
 # starting the application with systemd
 CMD ["/usr/bin/systemctl"]
+
+# copy entities to its home
+COPY lib/bash_completion.d /etc/bash_completion.d
+COPY lib/bin /usr/bin
+COPY lib/script /var/lib/amusewiki/script
+COPY lib/system /etc/systemd/system
 
 # local requirements
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'" >> /var/lib/amusewiki/.bashrc; \
@@ -122,8 +119,6 @@ RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\
 ENV PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'
 ENV AMW_USERNAME=${AMW_USERNAME}
 ENV AMW_PASSWORD=${AMW_PASSWORD}
-COPY lib/backup_amw.sh /usr/bin
-COPY lib/re-configure-nginx.sh /usr/bin
 
 # set amusewiki nginx prefix
 ENV NGX_PREFIX=amusewiki

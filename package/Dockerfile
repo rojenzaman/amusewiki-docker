@@ -20,8 +20,6 @@ RUN git clone https://github.com/gdraheim/docker-systemctl-replacement /tmp/dock
 	make; \
 	cp files/docker/systemctl3.py /usr/bin/systemctl; \
 	ln -sf /usr/bin/systemctl /bin/systemctl || true
-COPY lib/bash_completion/systemctl /etc/bash_completion.d
-
 
 # install amusewiki from source
 ENV DEBIAN_FRONTEND noninteractive
@@ -31,7 +29,7 @@ RUN wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -; 
 	apt-get install -y amusewiki-extra-fonts; \
 	apt-get install -y --no-install-recommends amusewiki postgresql-; \
 	chmod g+s /var/lib/amusewiki
-ENV DEBIAN_FRONTEND newt
+ENV DEBIAN_FRONTEND=
 
 # local requirements
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc \
@@ -65,14 +63,12 @@ ENV AMW_NPROC=${AMW_NPROC:-5}
 RUN systemctl enable amusewiki-web amusewiki-jobber nginx; \
 	mv /usr/bin/amusewiki-jobber /usr/bin/amusewiki-jobber-exec; \
 	sed -i 's/--nproc 5/--nproc ${AMW_NPROC}/g' /lib/systemd/system/amusewiki-web.service
-COPY lib/amusewiki-jobber /usr/bin
-COPY lib/post-domain.sh /usr/bin
-COPY lib/post-nginx.sh /usr/bin
-COPY lib/post-password.sh /usr/bin
-COPY lib/post-ssh.sh /usr/bin
-COPY lib/create-missing-stating-files.sh /usr/bin
 # starting the application with systemd
 CMD ["/usr/bin/systemctl"]
+
+# copy entities to its home
+COPY lib/bash_completion.d /etc/bash_completion.d
+COPY lib/bin /usr/bin
 
 # local requirements
 USER amusewiki
@@ -90,8 +86,8 @@ RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\
 ENV PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'
 ENV AMW_USERNAME=${AMW_USERNAME}
 ENV AMW_PASSWORD=${AMW_PASSWORD}
-COPY lib/backup_amw.sh /usr/bin
-COPY lib/re-configure-nginx.sh /usr/bin
+ARG AMW_SQLITE_PATH
+ENV AMW_SQLITE_PATH=${AMW_SQLITE_PATH:-/var/lib/dbconfig-common/sqlite3/amusewiki/amusewiki}
 
 # set amusewiki nginx prefix
 ENV NGX_PREFIX=amusewikidebian
