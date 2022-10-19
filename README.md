@@ -39,6 +39,12 @@ Click the button above then click **start**, wait for it to deploy. Then click *
 | `AMUSEWIKI_SWITCH_BRANCH` | No | Switch to given branch before run (*texlive-minimal*, *texlive-base*, *texlive-full*)
 | `CREATE_MISSING_STAGING_FILES` | No | Setting this to `true` will create missing staging files
 | `AMW_SQLITE_PATH` | No | Default is `/var/lib/dbconfig-common/sqlite3/amusewiki/amusewiki`
+| `EMAIL_SENDER_TRANSPORT` | No| Set it to `SMTP`
+| `EMAIL_SENDER_TRANSPORT_ssl` | No | Required for most email providers, set it to `1`
+| `EMAIL_SENDER_TRANSPORT_host` | No | e.g. for Riseup `mail.riseup.net`
+| `EMAIL_SENDER_TRANSPORT_port` | No | e.g. for Riseup `465`
+| `EMAIL_SENDER_TRANSPORT_sasl_username` | No | e.g. for Riseup `yourname@riseup.net`
+| `EMAIL_SENDER_TRANSPORT_sasl_password` | No | e.g. for Riseup `yourpass`
 
 ### Volumes
 
