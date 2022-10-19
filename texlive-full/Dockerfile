@@ -44,18 +44,14 @@ client_max_body_size 8m; \
 
 # create amusewiki user and give sudo
 RUN adduser --home /var/lib/amusewiki amusewiki --disabled-password --gecos ""; \
-	echo 'amusewiki ALL=NOPASSWD: /bin/mv,/usr/bin/unlink,/bin/rm,/bin/sh,/bin/cp,/bin/chmod,/bin/sed' >> /etc/sudoers.d/amusewiki-temp; \
+	echo 'amusewiki ALL=NOPASSWD: /bin/mv,/usr/bin/unlink,/bin/rm,/bin/sh,/bin/cp,/bin/chmod,/bin/sed,/bin/mkdir' >> /etc/sudoers.d/amusewiki-temp; \
 	echo 'amusewiki ALL=NOPASSWD: /bin/chown,/usr/sbin/nginx,/usr/sbin/amusewiki,/usr/bin/systemctl,/usr/bin/apt,/bin/chmod' >> /etc/sudoers.d/amusewiki; \
 	chmod 0440 /etc/sudoers.d/amusewiki-temp /etc/sudoers.d/amusewiki
 
-# quality of life
+# local requirements
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc; \
 	echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc; \
-	echo "source /etc/bash_completion" >> ${HOME}/.bashrc; \
-	# db directory support \
-	mkdir -p /var/lib/dbconfig-common/sqlite3/amusewiki; \
-	ln -s /var/lib/amusewiki/sqlite.db /var/lib/dbconfig-common/sqlite3/amusewiki/amusewiki; \
-	ln -s /var/lib/amusewiki/dbic.yaml /var/lib/dbconfig-common/sqlite3/amusewiki/dbic.yaml
+	echo "source /etc/bash_completion" >> ${HOME}/.bashrc
 
 # Switch to amusewiki user and install
 ARG AMUSE_CLONE_COMMAND
@@ -68,12 +64,22 @@ WORKDIR /var/lib/amusewiki
 ARG AMUSE_BUILD_DOMAIN
 ARG AMW_USERNAME
 ARG AMW_PASSWORD
+# set amw sqlite path and its script before run install.sh
+ARG AMW_SQLITE_PATH
+ENV AMW_SQLITE_PATH=${AMW_SQLITE_PATH:-/var/lib/dbconfig-common/sqlite3/amusewiki/amusewiki}
+COPY lib/amw-sqlite-path.sh /usr/bin
+# run installation script to complete the installation 
 RUN ./script/install.sh || true; \
-	cp dbic.yaml.sqlite.example dbic.yaml; \
+	# create db directory \
+	sudo mkdir -p $(dirname ${AMW_SQLITE_PATH}); \
+	sudo chown -R amusewiki:amusewiki $(dirname ${AMW_SQLITE_PATH}); \
+	# configure database \
+	amw-sqlite-path.sh --force; \
+	# configure initial site \
 	carton exec script/configure.sh ${AMUSE_BUILD_DOMAIN} > details.txt; \
+	# generate nginx configuration \
 	carton exec script/amusewiki-generate-nginx-conf | sudo /bin/sh; \
-	\
-	# set systemd files
+	# set systemd files \
 	carton exec script/generate-systemd-unit-files ./var/tmp/systemd; \
 	sudo cp -v ./var/tmp/systemd/* /etc/systemd/system/; \
 	sudo chown root:root /etc/systemd/system/amusewiki-*; \
@@ -97,9 +103,10 @@ COPY lib/post-ssh.sh /usr/bin
 COPY lib/post-branch.sh /usr/bin
 COPY lib/create-missing-stating-files.sh /usr/bin
 COPY lib/amusewiki-jobber.service /etc/systemd/system
+# starting the application with systemd
 CMD ["/usr/bin/systemctl"]
 
-# quality of life
+# local requirements
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]$ \[\e[0m\]'" >> /var/lib/amusewiki/.bashrc; \
 	echo "alias ls='ls --color=auto'" >> /var/lib/amusewiki/.bashrc; \
 	echo "source /etc/bash_completion" >> /var/lib/amusewiki/.bashrc; \

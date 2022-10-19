@@ -18,6 +18,7 @@ post-domain.sh &>/dev/null
 post-nginx.sh &>/dev/null
 post-password.sh &>/dev/null &
 create-missing-stating-files.sh &>/dev/null &
+amw-sqlite-path.sh &>/dev/null
 sudo nginx &>/dev/null
 amusewiki-upgrade-db &>/dev/null &
 

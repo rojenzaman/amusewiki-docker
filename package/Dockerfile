@@ -33,12 +33,10 @@ RUN wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -; 
 	chmod g+s /var/lib/amusewiki
 ENV DEBIAN_FRONTEND newt
 
-# quality of life
+# local requirements
 RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\H \[\e[0;91m\]\W\[\e[0;38;5;247m\]]\[\e[0;38;5;247m\]# \[\e[0m\]'" >> ${HOME}/.bashrc \
 	echo "alias ls='ls --color=auto'" >> ${HOME}/.bashrc; \
-	echo "source /etc/bash_completion" >> ${HOME}/.bashrc; \
-	# db directory support \
-	ln -s /var/lib/amusewiki/dbic.yaml /var/lib/dbconfig-common/sqlite3/amusewiki/dbic.yaml
+	echo "source /etc/bash_completion" >> ${HOME}/.bashrc
 
 # amusewiki nginx compatible
 RUN rm -rf /etc/nginx/sites-enabled /etc/nginx/sites-available /etc/nginx/conf.d; \
@@ -73,9 +71,10 @@ COPY lib/post-nginx.sh /usr/bin
 COPY lib/post-password.sh /usr/bin
 COPY lib/post-ssh.sh /usr/bin
 COPY lib/create-missing-stating-files.sh /usr/bin
+# starting the application with systemd
 CMD ["/usr/bin/systemctl"]
 
-# quality of life
+# local requirements
 USER amusewiki
 WORKDIR /var/lib/amusewiki
 ARG AMW_USERNAME

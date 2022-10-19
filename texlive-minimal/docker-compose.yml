@@ -12,11 +12,11 @@ services:
         AMW_NPROC: 5
         AMW_USERNAME: amusewiki
         AMW_PASSWORD: changeme
+        AMW_SQLITE_PATH: /var/lib/dbconfig-common/sqlite3/amusewiki/amusewiki
     volumes:
       - './amusewiki/repo:/var/lib/amusewiki/repo'
       - './amusewiki/thumbnails:/var/lib/amusewiki/thumbnails'
       - './amusewiki/staging:/var/lib/amusewiki/staging'
-      - './amusewiki/db/sqlite.db:/var/lib/amusewiki/sqlite.db'
-      - './amusewiki/db/dbic.yaml:/var/lib/amusewiki/dbic.yaml'
+      - './amusewiki/db:/var/lib/dbconfig-common/sqlite3/amusewiki'
       - './amusewiki/nginx:/etc/nginx/sites-enabled'
     env_file: lib/container.env
