@@ -6,7 +6,7 @@ RUN mv /bin/sh /bin/sh.local && ln -s /bin/bash /bin/sh
 # install requirements
 RUN apt-get update && apt-get upgrade -y; \
 	apt-get install -y \
-		wget curl gnupg2 build-essential bash-completion nano file net-tools psmisc procps htop jq \
+		wget curl gnupg2 build-essential bash-completion nano file net-tools psmisc procps htop jq rsync \
 		nginx git python3 sudo sqlite3 openssh-server
 
 # set locales
