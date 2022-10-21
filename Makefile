@@ -6,3 +6,9 @@ clean-all:
 
 chown:
 	sudo chown -R ${USER}:${USER} .
+
+rdfind:
+	rdfind -makehardlinks true .
+
+rdfind-clean:
+	rdfind -makehardlinks false .
