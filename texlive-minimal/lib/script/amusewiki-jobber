@@ -23,6 +23,7 @@ post-branch.sh &>/dev/null
 create-missing-stating-files.sh &>/dev/null &
 amw-sqlite-path.sh &>/dev/null
 sudo nginx &>/dev/null
+update-amusewiki.sh
 carton exec script/amusewiki-upgrade-db &>/dev/null &
 
 /usr/bin/carton exec perl -I/var/lib/amusewiki/lib /var/lib/amusewiki/script/amusewiki-jobber-exec

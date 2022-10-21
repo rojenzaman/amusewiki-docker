@@ -22,6 +22,7 @@ post-password.sh &>/dev/null &
 create-missing-stating-files.sh &>/dev/null &
 amw-sqlite-path.sh &>/dev/null
 sudo nginx &>/dev/null
+update-amusewiki.sh
 amusewiki-upgrade-db &>/dev/null &
 
 amusewiki-jobber-exec "$@"
