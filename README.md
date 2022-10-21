@@ -62,8 +62,8 @@ services:
   app:
     image: rojen/amusewiki:package
     ports:
-      -	'80:80'
-      -	'443:443'
+      - '80:80'
+      - '443:443'
     environment:
       - POST_DOMAIN=localhost
       - CHANGE_PASSWORD_BEFORE_RUN=true
