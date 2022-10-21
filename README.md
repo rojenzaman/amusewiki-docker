@@ -26,7 +26,8 @@ Click the button above then click **start**, wait for it to deploy. Then click *
 
 | Name | Required | Description
 |---|---|---
-| `POST_DOMAIN` | No | Change initial domain
+| `POST_DOMAIN` | No | Change initial or selected domain
+| `CHANGE_DOMAIN_BY_ID` | No | Default is initial domain: `1`
 | `CONTAINER_IS_BEHIND_HTTPS_TRAEFIK` | No | Setting this to `true` will enable HTTPS Traefik support
 | `AMW_WORKERS` | No | Specify number of process set by script/init-fcgi.pl
 | `AMW_NPROC` | No | Specify number of perl-fcgi process

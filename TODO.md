@@ -15,7 +15,7 @@
 - [ ] Empty initial site
 - [ ] Hidden service for amusewiki
 - [x] amusewiki-texlive/unknown 20220322-1 amd64 | Minimal TeX Live 2021 installation for Amusewiki (test it for texlive-base and texlive-full)
-- [ ] Change domain by ID
+- [x] Change domain by ID
 - [x] SSH support
 - [x] SSH key support
 - [x] Run specific branch
