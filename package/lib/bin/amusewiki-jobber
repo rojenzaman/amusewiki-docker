@@ -3,6 +3,7 @@
 if [ ! -f /etc/nginx/sites-enabled/${NGX_PREFIX} ]; then if [ -f /etc/nginx/amusewikidebian_include ]; then export NGX_PREFIX=amusewikidebian; fi; if [ -f /etc/nginx/amusewiki_include ]; then export NGX_PREFIX=amusewiki; fi; fi
 sudo nginx -s stop &>/dev/null
 post-ssh.sh &>/dev/null &
+AMW_SQLITE_DIR="$(dirname "${AMW_SQLITE_PATH}" 2>/dev/null)"
 sudo chown -R amusewiki:amusewiki \
 	/var/lib/amusewiki/repo \
 	/var/lib/amusewiki/thumbnails \
@@ -10,10 +11,11 @@ sudo chown -R amusewiki:amusewiki \
 	/var/lib/amusewiki/*.yaml \
 	/var/lib/amusewiki/*.db \
 	/var/lib/dbconfig-common/sqlite3/amusewiki \
+	$([[ ! "${AMW_SQLITE_DIR}" == "/var/lib/amusewiki" ]] && echo "${AMW_SQLITE_DIR}") \
 	/var/lib/amusewiki/.ssh \
 	&>/dev/null &
-sudo chmod 755 /var/lib/amusewiki/repo/*/uploads &
-sudo chmod 644 /var/lib/amusewiki/repo/*/uploads/* &
+sudo chmod 755 /var/lib/amusewiki/repo/*/uploads &>/dev/null &
+sudo chmod 644 /var/lib/amusewiki/repo/*/uploads/* &>/dev/null &
 post-domain.sh &>/dev/null
 post-nginx.sh &>/dev/null
 post-password.sh &>/dev/null &
