@@ -59,17 +59,11 @@ Required volumes:
  - `/var/lib/dbconfig-common/sqlite3/amusewiki` **db**
  - `/etc/nginx/sites-enabled` **web**
 
-Optional volumes:
+Optional volumes: (set [OTHER_VOLUMES_USED_IN_CONTAINER](#environment-variables) for this)
 
  - `/var/lib/amusewiki/log` **log**
  - `/var/lib/amusewiki/ssl` **ssl**
  - `/var/lib/amusewiki/.ssh` **ssh**
-
-Set `OTHER_VOLUMES_USED_IN_CONTAINER` variable for optional volumes, example:
-
-```bash
-OTHER_VOLUMES_USED_IN_CONTAINER="/var/lib/amusewiki/log, /var/lib/amusewiki/ssl, /var/lib/amusewiki/.ssh"
-```
 
 ### Quick docker-compose.yml
 
