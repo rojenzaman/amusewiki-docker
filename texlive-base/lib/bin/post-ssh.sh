@@ -18,7 +18,7 @@ if [ -z "${HOST_SSH_PUBLIC_KEY}" ]; then
 	exit 0
 else
 	# write ssh key
-	echo "${HOST_SSH_PUBLIC_KEY}" | sed 's/^"\(.*\)"$/\1/' > /var/lib/amusewiki/.ssh/authorized_keys
+	echo "${HOST_SSH_PUBLIC_KEY}" | sed 's/^"\(.*\)"$/\1/' > /var/lib/amusewiki/.ssh/authorized_keys # required for podman because quotes in .env are not handled (https://github.com/containers/podman-compose/issues/370)
 	# enable and start sshd service
 	sudo systemctl enable sshd
 	sudo systemctl start sshd
