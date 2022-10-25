@@ -41,6 +41,7 @@ Click the button above then click **start**, wait for it to deploy. Then click *
 | `CREATE_MISSING_STAGING_FILES` | No | Setting this to `true` will create missing staging files
 | `AMW_SQLITE_PATH` | No | Default is `/var/lib/dbconfig-common/sqlite3/amusewiki/amusewiki`
 | `UPDATE_AMUSEWIKI` | No | Setting this to `true` will update/pull amusewiki before start
+| `OTHER_VOLUMES_USED_IN_CONTAINER` | No | Set the container path of your custom volumes. Commands like chown, backup_amw.sh will detect these objects. Example: `/var/lib/amusewiki/log, /var/lib/amusewiki/ssl, /var/lib/amusewiki/.ssh`
 | `EMAIL_SENDER_TRANSPORT` | No| Set it to `SMTP`
 | `EMAIL_SENDER_TRANSPORT_ssl` | No | Required for most email providers, set it to `1`
 | `EMAIL_SENDER_TRANSPORT_host` | No | e.g. for Riseup `mail.riseup.net`
@@ -50,11 +51,25 @@ Click the button above then click **start**, wait for it to deploy. Then click *
 
 ### Volumes
 
+Required volumes:
+
  - `/var/lib/amusewiki/repo`  **git**
  - `/var/lib/amusewiki/thumbnails`  **thumb**
  - `/var/lib/amusewiki/staging` **staging**
  - `/var/lib/dbconfig-common/sqlite3/amusewiki` **db**
  - `/etc/nginx/sites-enabled` **web**
+
+Optional volumes:
+
+ - `/var/lib/amusewiki/log` **log**
+ - `/var/lib/amusewiki/ssl` **ssl**
+ - `/var/lib/amusewiki/.ssh` **ssh**
+
+Set `OTHER_VOLUMES_USED_IN_CONTAINER` variable for optional volumes, example:
+
+```bash
+OTHER_VOLUMES_USED_IN_CONTAINER="/var/lib/amusewiki/log, /var/lib/amusewiki/ssl, /var/lib/amusewiki/.ssh"
+```
 
 ### Quick docker-compose.yml
 

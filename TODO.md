@@ -24,3 +24,4 @@
 - [x] texlive-minimal for PWD
 - [x] Fix symlinks for `/var/lib/dbconfig-common/sqlite3/amusewiki`
 - [x] SMTP support
+- [x] Support for optional volumes

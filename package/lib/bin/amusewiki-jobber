@@ -13,6 +13,7 @@ sudo chown -R amusewiki:amusewiki \
 	/var/lib/dbconfig-common/sqlite3/amusewiki \
 	$([[ ! "${AMW_SQLITE_DIR}" == "/var/lib/amusewiki" ]] && echo "${AMW_SQLITE_DIR}") \
 	/var/lib/amusewiki/.ssh \
+	${OTHER_VOLUMES_USED_IN_CONTAINER//,/} \
 	&>/dev/null &
 sudo chmod 755 /var/lib/amusewiki/repo/*/uploads &>/dev/null &
 sudo chmod 644 /var/lib/amusewiki/repo/*/uploads/* &>/dev/null &
