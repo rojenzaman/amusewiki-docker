@@ -88,6 +88,7 @@ ENV AMW_USERNAME=${AMW_USERNAME}
 ENV AMW_PASSWORD=${AMW_PASSWORD}
 ARG AMW_SQLITE_PATH
 ENV AMW_SQLITE_PATH=${AMW_SQLITE_PATH:-/var/lib/dbconfig-common/sqlite3/amusewiki/amusewiki}
+ENV OTHER_VOLUMES_USED_IN_CONTAINER="/var/lib/amusewiki/log, /var/lib/amusewiki/ssl, /var/lib/amusewiki/.ssh"
 
 # set amusewiki nginx prefix
 ENV NGX_PREFIX=amusewikidebian
