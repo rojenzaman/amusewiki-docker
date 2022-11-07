@@ -64,7 +64,6 @@ setup-example-stack:
 	wget -O lib/amusewiki.tar $(REMOTE_TAR)
 	make restore
 	-$(POST_SETUP)
-	cat amusewiki/db/details.txt
 
 setup-example-rootless-podman-stack:
 	make clean
@@ -72,10 +71,8 @@ setup-example-rootless-podman-stack:
 	make restore
 	sed -i "s/80/$(PODMAN_HTTP_PORT)/g" amusewiki/nginx/amusewiki*
 	sed -i "s/443/$(PODMAN_HTTPS_PORT)/g" amusewiki/nginx/amusewiki*
-	sed -i "s%http://amusewiki.localdomain%http://amusewiki.localdomain:8080%g" amusewiki/db/details.txt
 	sed -i 's/OCI = docker/OCI = podman/g' lib/make.config
 	-$(POST_SETUP)
-	cat amusewiki/db/details.txt
 	@printf "\n\nplease set up a reserve proxy to $(PODMAN_HTTP_PORT) and $(PODMAN_HTTPS_PORT) port:\n\n"
 	@cat lib/example_proxy
 
