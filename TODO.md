@@ -6,7 +6,7 @@
 - [x] Change domain after running the container. Apply a script from this method: https://git.coopcloud.tech/coop-cloud/amusewiki (:package)
 - [x] Post settings for HTTPS traefik. Apply a ascript from this method: https://git.coopcloud.tech/coop-cloud/amusewiki
 - [ ] Support for MySQL, PostgreSQL
-- [ ] Incremental backup
+- [ ] Incremental backup: yq
 - [x] Public versioning of the package tag.
 - [x] Update remote tar
 - [x] Support "Try in PWD"
