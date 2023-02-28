@@ -12,3 +12,6 @@ rdfind:
 
 rdfind-clean:
 	rdfind -makehardlinks false .
+
+trigger-github-actions:
+	git commit --allow-empty -m "trigger GitHub actions"
