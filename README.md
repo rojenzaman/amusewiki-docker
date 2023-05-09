@@ -17,7 +17,7 @@ Click the button above then click **start**, wait for it to deploy. Then click *
 
 ### Tags
 
- - [`package, latest, package-2.551, package-2.560, package-2.561, package-2.562, package-2.563, package-2.565`](https://github.com/rojenzaman/amusewiki-docker/blob/master/package/Dockerfile)
+ - [`package, latest, package-2.551, package-2.560, package-2.561, package-2.562, package-2.563, package-2.565, package-2.566`](https://github.com/rojenzaman/amusewiki-docker/blob/master/package/Dockerfile)
  - [`texlive-minimal`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-minimal/Dockerfile)
  - [`texlive-base`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-base/Dockerfile)
  - [`texlive-full`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-full/Dockerfile)
