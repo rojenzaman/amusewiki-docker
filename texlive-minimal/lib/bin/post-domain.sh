@@ -31,5 +31,12 @@ sqlite3 "${AMW_SQLITE_PATH}" "update site SET canonical = '${POST_DOMAIN}' WHERE
 
 # update domain for nginx
 sudo chown -R amusewiki:amusewiki /etc/nginx
-carton exec ./script/amusewiki-generate-nginx-conf | grep 'nginx-amusewiki-' | grep -v 'reload' | bash
+if command -v carton; then
+	carton exec ./script/amusewiki-generate-nginx-conf | grep 'nginx-amusewiki-' | grep -v 'reload' | bash
+else
+	(
+		cd /var/lib/amusewiki
+		amusewiki-generate-nginx-conf | grep 'nginx-amusewiki-' | grep -v 'reload' | bash
+	)
+fi
 sudo chown -R root:root /etc/nginx
