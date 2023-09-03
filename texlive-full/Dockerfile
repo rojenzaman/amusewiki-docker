@@ -35,7 +35,6 @@ RUN git clone https://github.com/gdraheim/docker-systemctl-replacement /tmp/dock
 RUN rm -rf /etc/nginx/sites-enabled /etc/nginx/sites-available /etc/nginx/conf.d; \
 	mkdir -p /etc/nginx/sites-enabled /etc/nginx/conf.d; \
 	echo -e "\
-include /etc/nginx/sites-enabled/*; \n\
 client_max_body_size 8m; \
 " > /etc/nginx/conf.d/post-amuse.conf; \
 # post nginx settings \

@@ -40,7 +40,6 @@ RUN echo "PS1='\[\e[0;38;5;247m\][\[\e[0;92m\]\u\[\e[0;38;5;247m\]@\[\e[0;93m\]\
 RUN rm -rf /etc/nginx/sites-enabled /etc/nginx/sites-available /etc/nginx/conf.d; \
 	mkdir -p /etc/nginx/sites-enabled /etc/nginx/conf.d; \
 	echo -e "\
-include /etc/nginx/sites-enabled/*; \n\
 client_max_body_size 8m; \
 " > /etc/nginx/conf.d/post-amuse.conf; \
 # post nginx settings \
