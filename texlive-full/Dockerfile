@@ -10,7 +10,7 @@ RUN apt-get update && apt-get upgrade -y; \
 		sqlite3 fontconfig carton openssh-server; \
 	apt-get install --no-install-recommends --no-install-suggests -y \
 		graphicsmagick imagemagick shared-mime-info openssl libssl-dev xapian-tools libxapian-dev unzip wget git rsync \
-		cpanminus build-essential zlib1g-dev libpng-dev libjpeg-dev libxml2-dev libexpat1-dev nginx; \
+		cpanminus build-essential zlib1g-dev libpng-dev libjpeg-dev libxml2-dev libexpat1-dev nginx-extras; \
 	apt-get install -y texlive-full
 
 # set locales

@@ -10,7 +10,7 @@ RUN apt-get update && apt-get upgrade -y; \
 		python3 sudo sqlite3 openssh-server; \
 	apt-get install --no-install-recommends --no-install-suggests -y \
 		carton cpanminus fontconfig gcc ghostscript git graphicsmagick imagemagick make rsync \
-		shared-mime-info unzip xapian-tools nginx texlive-base texlive-fonts-recommended texlive-fonts-recommended-doc \
+		shared-mime-info unzip xapian-tools nginx-extras texlive-base texlive-fonts-recommended texlive-fonts-recommended-doc \
 		texlive-base texlive-lang-all texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive-latex-recommended \
 		texlive-luatex texlive-xetex cgit fcgiwrap fonts-cmu fonts-dejavu fonts-hosny-amiri fonts-linuxlibertine fonts-lmodern \
 		fonts-sil-charis fonts-sil-gentium fonts-sil-gentium-basic fonts-sil-scheherazade fonts-texgyre lmodern g++ libssl-dev \

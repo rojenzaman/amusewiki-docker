@@ -7,7 +7,7 @@ RUN mv /bin/sh /bin/sh.local && ln -s /bin/bash /bin/sh
 RUN apt-get update && apt-get upgrade -y; \
 	apt-get install -y \
 		wget curl gnupg2 build-essential bash-completion nano file net-tools psmisc procps htop jq rsync \
-		nginx git python3 sudo sqlite3 openssh-server
+		nginx-extras git python3 sudo sqlite3 openssh-server
 
 # set locales
 RUN apt-get install -y locales && rm -rf /var/lib/apt/lists/* \

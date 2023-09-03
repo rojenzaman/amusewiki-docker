@@ -10,7 +10,7 @@ RUN apt-get update && apt-get upgrade -y; \
 		python3 sudo sqlite3 openssh-server; \
 	apt-get install --no-install-recommends --no-install-suggests -y \
 		carton cpanminus fontconfig gcc ghostscript git graphicsmagick imagemagick make rsync \
-		shared-mime-info unzip xapian-tools nginx cgit fcgiwrap g++ libssl-dev \
+		shared-mime-info unzip xapian-tools nginx-extras cgit fcgiwrap g++ libssl-dev \
 		libxapian-dev libxml2-dev libexpat1-dev libjpeg-dev libpng-dev gettext
 
 # set locales
