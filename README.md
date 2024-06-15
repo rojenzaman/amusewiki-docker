@@ -17,8 +17,8 @@ Click the button above then click **start**, wait for it to deploy. Then click *
 
 ### Tags
 
- - [`package, latest, package-2.551, package-2.560, package-2.561, package-2.562, package-2.563, package-2.565, package-2.566, package-2.571, package-2.572, package-2.574, package-2.575, package-2.576, package-2.577, package-2.578, package-2.579, package-2.580, package-2.581, package-2.582, package-2.583, package-2.590, package-2.593, package-2.594, package-2.596, package-2.597, package-2.598`](https://github.com/rojenzaman/amusewiki-docker/blob/master/package/Dockerfile)
- - [`texlive-minimal, texlive-minimal-2.593, texlive-minimal-2.594, texlive-minimal-2.596, texlive-minimal-2.597, texlive-minimal-2.598`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-minimal/Dockerfile)
+ - [`package, latest, package-2.551, package-2.560, package-2.561, package-2.562, package-2.563, package-2.565, package-2.566, package-2.571, package-2.572, package-2.574, package-2.575, package-2.576, package-2.577, package-2.578, package-2.579, package-2.580, package-2.581, package-2.582, package-2.583, package-2.590, package-2.593, package-2.594, package-2.596, package-2.597, package-2.598, package-2.599`](https://github.com/rojenzaman/amusewiki-docker/blob/master/package/Dockerfile)
+ - [`texlive-minimal, texlive-minimal-2.593, texlive-minimal-2.594, texlive-minimal-2.596, texlive-minimal-2.597, texlive-minimal-2.598, texlive-minimal-2.599`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-minimal/Dockerfile)
  - [`texlive-base`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-base/Dockerfile)
  - [`texlive-full`](https://github.com/rojenzaman/amusewiki-docker/blob/master/texlive-full/Dockerfile)
 
