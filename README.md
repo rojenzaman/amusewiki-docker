@@ -68,7 +68,6 @@ Optional volumes: (*set [OTHER_VOLUMES_USED_IN_CONTAINER](#OTHER_VOLUMES_USED_IN
 ### Quick docker-compose.yml
 
 ```yaml
-version: '3.4'
 services:
   app:
     image: rojen/amusewiki:package

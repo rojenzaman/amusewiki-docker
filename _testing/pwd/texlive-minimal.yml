@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   app:
     # texlive-base and texlive-full not supported due to size

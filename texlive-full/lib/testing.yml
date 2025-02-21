@@ -1,4 +1,3 @@
-version: '3.4'
 services:
   app:
     image: rojen/amusewiki:texlive-full
