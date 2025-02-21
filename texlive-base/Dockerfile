@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:12
 
 # temporarily disable posix shell:
 RUN mv /bin/sh /bin/sh.local && ln -s /bin/bash /bin/sh
